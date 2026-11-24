@@ -71,6 +71,20 @@
     <!-- Toast Notification (Lapisan paling atas agar tidak tertutup modal) -->
     <div id="toast-container" class="fixed top-4 right-4 z-[120] flex flex-col gap-2 max-w-sm w-[calc(100%-2rem)] pointer-events-none"></div>
 
+    <!-- Overlay Loading Pengiriman Pendaftaran (3,5 Detik) -->
+    <div id="submit-loading-overlay" class="hidden fixed inset-0 z-[110] bg-slate-950/65 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-xs w-full p-6 text-center fade-in border border-slate-200">
+            <div class="w-16 h-16 rounded-2xl bg-maroon-50 text-maroon-700 flex items-center justify-center mx-auto mb-4 relative">
+                <i class="fa-solid fa-futbol fa-spin text-3xl"></i>
+            </div>
+            <h3 class="font-display text-lg font-extrabold text-slate-900">Mengirim Pendaftaran...</h3>
+            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Mohon tunggu sebentar, data Anda sedang dicatat ke daftar pemain (DSP) online.</p>
+            <div class="mt-4 w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                <div id="submit-loading-bar" class="h-full bg-maroon-700 rounded-full transition-all duration-[3500ms] ease-out w-0"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- HEADER MERAH MARUN -->
     <header class="maroon-stripes text-white pt-5 pb-20 px-4 relative overflow-hidden shadow-lg">
         <!-- Aksen bola samar di latar belakang -->
@@ -99,16 +113,14 @@
 
             <!-- Banner Utama: Logo biMBA (Kiri) - Judul (Tengah) - Logo VFC (Kanan) -->
             <div class="flex flex-col md:flex-row items-center justify-between gap-5 text-center">
-                <!-- Mobile Logo Row (tampil berdampingan di layar kecil) -->
+                <!-- Mobile Logo Row -->
                 <div class="flex md:hidden items-center justify-center gap-6 mb-1">
-                    <!-- Logo biMBA (Paten via Google Drive) -->
                     <div class="w-20 h-20 flex items-center justify-center logo-shadow">
                         <img src="https://lh3.googleusercontent.com/d/1E9HTjJw0PVEORIqBLof8ifE1RLDk-2mF=s500"
                              referrerpolicy="no-referrer"
                              onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=1E9HTjJw0PVEORIqBLof8ifE1RLDk-2mF&sz=w400';"
                              alt="Logo biMBA AIUEO" class="logo-bimba-img w-full h-full object-contain">
                     </div>
-                    <!-- Logo VFC (Paten via Google Drive) -->
                     <div class="w-20 h-20 flex items-center justify-center logo-shadow">
                         <img src="https://lh3.googleusercontent.com/d/1zKRREPZJzPbvH88NnrM7_Qi0Z5PViD5g=s500"
                              referrerpolicy="no-referrer"
@@ -132,7 +144,7 @@
                     </h1>
                     <p class="mt-1.5 text-base sm:text-lg font-bold text-white">Relawan biMBA AIUEO</p>
                     <p class="text-xs sm:text-sm font-extrabold tracking-widest text-trophy-400 uppercase mt-0.5">Internal Game</p>
-                    <p class="mt-1 text-xs sm:text-sm italic text-red-100/90">"Mempererat Silaturahmi dan Kerjasama dalam Sepak Bola"</p>
+                    <p class="mt-1 text-xs sm:text-sm italic text-red-100/90">"Tetap Semangat dan Terus Belajar"</p>
 
                     <!-- Counter Terdaftar -->
                     <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/25 border border-white/15 text-xs sm:text-sm font-semibold">
@@ -189,7 +201,7 @@
             </div>
         </div>
 
-        <!-- Banner Mode Input Manual Admin (hanya tampil jika diaktifkan admin) -->
+        <!-- Banner Mode Input Manual Admin -->
         <div id="admin-manual-banner" class="hidden mb-4 bg-amber-50 border border-amber-300 rounded-2xl p-3.5 flex items-center justify-between gap-3">
             <div class="flex items-center gap-2.5 text-amber-900 text-xs sm:text-sm font-semibold">
                 <i class="fa-solid fa-user-shield text-amber-600 text-lg"></i>
@@ -200,7 +212,7 @@
             </button>
         </div>
 
-        <!-- Layar Pendaftaran Ditutup (tampil jika waktu habis dan bukan mode manual) -->
+        <!-- Layar Pendaftaran Ditutup -->
         <section id="closed-screen" class="hidden bg-white rounded-3xl shadow-xl border border-slate-200 p-8 text-center">
             <div class="w-16 h-16 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-3xl mx-auto mb-4">
                 <i class="fa-solid fa-lock"></i>
@@ -282,7 +294,7 @@
                             </div>
                         </button>
 
-                        <!-- Pilihan 2: Bukan Pekerja biMBA -->
+                        <!-- Pilihan 2: Bukan Relawan biMBA -->
                         <button type="button" id="card-non-relawan" onclick="selectCategory('non_relawan')" class="text-left p-5 rounded-2xl border-2 border-slate-200 hover:border-amber-500 bg-white transition-all flex flex-col justify-between cursor-pointer group">
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-4">
@@ -293,7 +305,7 @@
                                         HTM Rp 20.000
                                     </span>
                                 </div>
-                                <h3 class="font-display text-lg font-extrabold text-slate-900">TIDAK, Bukan Pekerja biMBA</h3>
+                                <h3 class="font-display text-lg font-extrabold text-slate-900">TIDAK, Bukan Relawan biMBA</h3>
                                 <p class="text-xs sm:text-sm text-slate-500 mt-1.5 leading-relaxed">
                                     Untuk peserta umum, tamu, atau rekanan yang tidak aktif bekerja di biMBA / YPAI.
                                 </p>
@@ -305,7 +317,7 @@
                         </button>
                     </div>
 
-                    <!-- Kotak Verifikasi Kode Internal (muncul saat Relawan biMBA dipilih) -->
+                    <!-- Kotak Verifikasi Kode Internal -->
                     <div id="internal-code-box" class="hidden mt-5 p-4 sm:p-5 rounded-2xl bg-emerald-50/80 border border-emerald-200 fade-in">
                         <div class="flex items-start gap-3">
                             <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
@@ -318,11 +330,11 @@
                                     <input type="text" id="input-internal-code" placeholder="Ketik Kode Internal..." autocomplete="off"
                                         class="flex-1 px-4 py-2.5 rounded-xl border border-emerald-300 bg-white text-sm font-bold uppercase tracking-widest text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                                     <button type="button" onclick="selectCategory('non_relawan')" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-amber-50 border border-amber-300 text-amber-800 text-xs font-bold transition cursor-pointer whitespace-nowrap">
-                                        Bukan pekerja biMBA? Pindah ke Umum
+                                        Bukan relawan biMBA? Pindah ke Umum
                                     </button>
                                 </div>
                                 <p id="err-internal-code" class="hidden text-xs font-bold text-red-600 mt-2">
-                                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Kode internal salah! Jika Anda bukan karyawan biMBA, silakan pilih kategori Bukan Pekerja biMBA.
+                                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Kode internal salah! Jika Anda bukan karyawan biMBA, silakan pilih kategori Bukan Relawan biMBA.
                                 </p>
                             </div>
                         </div>
@@ -489,7 +501,7 @@
                         </div>
                         <div>
                             <h3 class="font-display text-base font-extrabold text-emerald-900">Pendaftaran Berhasil Tercatat!</h3>
-                            <p class="text-xs text-emerald-800 mt-0.5">Nama Anda sudah langsung masuk ke DSP online. Simpan E-Kwitansi atau kirim konfirmasi ke grup/panitia.</p>
+                            <p class="text-xs text-emerald-800 mt-0.5">Nama Anda sudah langsung masuk ke DSP online. Simpan E-Kwitansi atau kirim konfirmasi ke panitia.</p>
                         </div>
                     </div>
 
@@ -497,7 +509,6 @@
                     <div class="mt-5 rounded-2xl border border-slate-200 shadow-md overflow-hidden bg-white">
                         <div class="maroon-stripes text-white px-5 py-4 flex items-center justify-between gap-3">
                             <div class="flex items-center gap-3">
-                                <!-- Logo VFC Paten -->
                                 <div class="w-11 h-11 shrink-0 logo-shadow flex items-center justify-center">
                                     <img src="https://lh3.googleusercontent.com/d/1zKRREPZJzPbvH88NnrM7_Qi0Z5PViD5g=s500"
                                          referrerpolicy="no-referrer"
@@ -539,7 +550,7 @@
                         </div>
                     </div>
 
-                    <!-- Kotak Ceklis Komitmen Hadir (Berlaku untuk Relawan & Non-Relawan) -->
+                    <!-- Kotak Ceklis Komitmen Hadir -->
                     <div id="commitment-box" class="mt-5">
                         <label id="commitment-label" class="flex items-start gap-3 p-4 rounded-2xl border border-amber-300 bg-amber-50/70 cursor-pointer transition">
                             <input type="checkbox" id="check-komitmen" class="mt-1 w-4 h-4 accent-amber-600 rounded shrink-0" onchange="clearCommitmentError()">
@@ -602,9 +613,7 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <div id="public-dsp-body" class="p-5 overflow-y-auto space-y-5 bg-slate-50 flex-1">
-                <!-- Diisi otomatis via JS -->
-            </div>
+            <div id="public-dsp-body" class="p-5 overflow-y-auto space-y-5 bg-slate-50 flex-1"></div>
         </div>
     </div>
 
@@ -735,9 +744,7 @@
                                 <th class="py-3 px-4 text-right">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="adm-dsp-tbody" class="divide-y divide-slate-100 text-xs sm:text-sm">
-                            <!-- Diisi otomatis via JS -->
-                        </tbody>
+                        <tbody id="adm-dsp-tbody" class="divide-y divide-slate-100 text-xs sm:text-sm"></tbody>
                     </table>
                 </div>
             </div>
@@ -816,9 +823,7 @@
                 </div>
             </div>
             <div class="p-4 sm:p-6 bg-slate-200 overflow-y-auto flex-1">
-                <div id="print-document-sheet" class="bg-white max-w-3xl mx-auto p-6 sm:p-8 rounded-xl shadow-md text-slate-900">
-                    <!-- Konten DSP 2 Tim diisi otomatis -->
-                </div>
+                <div id="print-document-sheet" class="bg-white max-w-3xl mx-auto p-6 sm:p-8 rounded-xl shadow-md text-slate-900"></div>
             </div>
         </div>
     </div>
@@ -834,11 +839,7 @@
         const ADMIN_WA_NUMBER = '6281586666372';
         const ADMIN_WA_DISPLAY = '0815-8666-6372';
 
-        // =========================================================================
-        // LOGO PATEN VIA GOOGLE DRIVE:
-        // Menggunakan parameter =s500 & fallback thumbnail agar stabil di semua
-        // browser serta mendukung CORS untuk unduhan E-Kwitansi & cetak PDF.
-        // =========================================================================
+        // Logo Paten via Google Drive
         const LOGO_BIMBA_ID = '1E9HTjJw0PVEORIqBLof8ifE1RLDk-2mF';
         const LOGO_VFC_ID   = '1zKRREPZJzPbvH88NnrM7_Qi0Z5PViD5g';
         const LOGO_BIMBA_URL = `https://lh3.googleusercontent.com/d/${LOGO_BIMBA_ID}=s500`;
@@ -851,105 +852,63 @@
         let pendingDeletePlayerId = null;
         let pendingResetMatchConfirm = false;
         let lastPrintBodyHTML = '';
-
-        const DEFAULT_VFC_SVG = `
-            <svg viewBox="0 0 120 120" class="w-full h-full">
-                <path d="M22 22 L60 12 L98 22 L98 66 C98 92 60 110 60 110 C60 110 22 92 22 66 Z" fill="#1e3a8a" stroke="#dc2626" stroke-width="5"/>
-                <path d="M26 26 L60 17 L94 26 L94 40 L26 40 Z" fill="#dc2626"/>
-                <text x="60" y="35" text-anchor="middle" fill="#fde047" font-size="10" font-weight="800">VOLUNTEER</text>
-                <circle cx="60" cy="64" r="17" fill="#f97316" stroke="#1e293b" stroke-width="2"/>
-                <circle cx="54" cy="60" r="2.5" fill="#1e293b"/>
-                <circle cx="66" cy="60" r="2.5" fill="#1e293b"/>
-                <path d="M54 69 Q60 74 66 69" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="40" cy="84" r="9" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
-                <circle cx="40" cy="84" r="3.5" fill="#1e293b"/>
-                <text x="60" y="102" text-anchor="middle" fill="#fde047" font-size="8.5" font-weight="800">YPAI 1996</text>
-            </svg>`;
-
-        function applyFixedLogosUI() {
-            document.querySelectorAll('.logo-bimba-img').forEach(img => {
-                img.referrerPolicy = 'no-referrer';
-                img.onerror = function() {
-                    this.onerror = null;
-                    this.src = LOGO_BIMBA_FALLBACK;
-                };
-                img.src = LOGO_BIMBA_URL;
-            });
-            document.querySelectorAll('.logo-vfc-img').forEach(img => {
-                img.referrerPolicy = 'no-referrer';
-                img.onerror = function() {
-                    this.onerror = () => {
-                        this.onerror = null;
-                        this.src = getDefaultVfcSvgDataUri();
-                    };
-                    this.src = LOGO_VFC_FALLBACK;
-                };
-                img.src = LOGO_VFC_URL;
-            });
-        }
-
-        const defaultSeedPlayers = [
-            { id: 'FF-1001', nama: 'Ahmad Fauzi', wa: '081388990011', kategori: 'relawan', posisi: ['Penjaga Gawang'], referensi: '', bankTujuan: '', htmAmount: 0, paymentStatus: 'gratis', createdAt: '20 Nov 2026, 09:15' },
-            { id: 'FF-1002', nama: 'Satria Wijaya Dipa', wa: '081234567801', kategori: 'relawan', posisi: ['Pemain Tengah', 'Pemain Belakang'], referensi: '', bankTujuan: '', htmAmount: 0, paymentStatus: 'gratis', createdAt: '20 Nov 2026, 09:20' },
-            { id: 'FF-1003', nama: 'Rizki Sanjaya', wa: '08965554545', kategori: 'relawan', posisi: ['Pemain Depan'], referensi: '', bankTujuan: '', htmAmount: 0, paymentStatus: 'gratis', createdAt: '20 Nov 2026, 10:05' },
-            { id: 'FF-1004', nama: 'Jajang Nurjaman', wa: '08546521600', kategori: 'non_relawan', posisi: ['Pemain Belakang', 'Pemain Tengah'], referensi: 'Budi (Relawan)', bankTujuan: 'Transfer Mandiri', htmAmount: 20000, paymentStatus: 'lunas', createdAt: '20 Nov 2026, 11:30' },
-            { id: 'FF-1005', nama: 'Dimas Pratama', wa: '087712349988', kategori: 'non_relawan', posisi: ['Pemain Depan'], referensi: 'Satria', bankTujuan: 'Transfer BCA', htmAmount: 20000, paymentStatus: 'menunggu', createdAt: '21 Nov 2026, 08:40' }
-        ];
+        let isSubmitting = false;
 
         const state = {
             currentStep: 1,
-            regId: generateRegId(),
             kategori: '',
             nama: '',
             wa: '',
             referensi: '',
             posisi: [],
             bankTujuan: 'Transfer BCA',
-            buktiFileName: '',
             buktiDataUrl: '',
+            buktiFileName: '',
+            regId: '',
             isSubmitted: false,
             isAdminManualMode: false
         };
 
-        // Penghubung aman untuk modul sinkronisasi online
-        window.getDefaultSeedPlayers = function() {
-            return JSON.parse(JSON.stringify(defaultSeedPlayers));
-        };
+        const defaultSeedPlayers = [
+            { id: 'FF-1001', nama: 'Satria Wijaya Dipa', wa: '081586666372', kategori: 'relawan', posisi: ['Pemain Tengah'], referensi: '', bankTujuan: '', buktiFileName: '', htmAmount: 0, paymentStatus: 'gratis', createdAt: '24 Nov 2026, 09:00' },
+            { id: 'FF-1002', nama: 'Ahmad Fauzi', wa: '081298765432', kategori: 'relawan', posisi: ['Penjaga Gawang'], referensi: '', bankTujuan: '', buktiFileName: '', htmAmount: 0, paymentStatus: 'gratis', createdAt: '24 Nov 2026, 09:15' },
+            { id: 'FF-1003', nama: 'Rizky Pratama', wa: '085612349876', kategori: 'non_relawan', posisi: ['Pemain Depan'], referensi: 'Satria', bankTujuan: 'Transfer BCA', buktiFileName: 'bukti-bca.jpg', htmAmount: 20000, paymentStatus: 'lunas', createdAt: '24 Nov 2026, 09:30' }
+        ];
 
-        window.applyCloudFormSettings = function(data) {
-            if (!data) return;
-            if (data.deadlineTimestamp) deadlineTimestamp = data.deadlineTimestamp;
-            if (data.adminSecretPin) adminSecretPin = data.adminSecretPin;
-            if (data.internalSecretCode) internalSecretCode = data.internalSecretCode;
-            updateCountdown();
-        };
-
-        window.applyCloudPlayersList = function(list) {
+        // --- 2. UTILITAS & PENGHUBUNG CLOUD ---
+        window.applyCloudPlayers = function(list) {
             playersList = Array.isArray(list) ? list : [];
             syncRegisteredCountUI();
             if (!document.getElementById('admin-dashboard-modal').classList.contains('hidden')) {
-                renderAdminDashboard();
+                renderAdminDSPTable();
             }
             if (!document.getElementById('public-transparency-modal').classList.contains('hidden')) {
                 renderPublicTransparency();
             }
         };
 
+        window.applyCloudFormSettings = function(settings) {
+            if (!settings) return;
+            if (settings.deadlineTimestamp) deadlineTimestamp = Number(settings.deadlineTimestamp);
+            if (settings.internalSecretCode) internalSecretCode = String(settings.internalSecretCode).trim().toUpperCase();
+            if (settings.adminSecretPin) adminSecretPin = String(settings.adminSecretPin).trim();
+            updateCountdownUI();
+        };
+
         function generateRegId() {
             return 'FF-' + Math.floor(1000 + Math.random() * 9000);
         }
 
-        function formatRupiah(num) {
-            return 'Rp ' + (Number(num) || 0).toLocaleString('id-ID');
+        function formatRupiah(n) {
+            return 'Rp ' + (Number(n) || 0).toLocaleString('id-ID');
         }
 
-        function maskPhone(phone) {
-            const s = String(phone || '').replace(/\s+/g, '');
+        function maskWA(wa) {
+            const s = String(wa || '').replace(/\s+/g, '');
             if (s.length <= 6) return s;
-            return s.slice(0, 4) + '****' + s.slice(-3);
+            return s.slice(0, 4) + '••••' + s.slice(-3);
         }
 
-        // --- 2. TOAST & CLIPBOARD ---
         function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
@@ -958,15 +917,14 @@
                 : type === 'info'
                     ? 'bg-slate-800 text-white border-slate-700'
                     : 'bg-emerald-600 text-white border-emerald-700';
-            const icon = type === 'error' ? 'fa-circle-exclamation' : type === 'info' ? 'fa-circle-info' : 'fa-circle-check';
-            toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl border shadow-lg text-xs sm:text-sm font-semibold fade-in ${colors}`;
-            toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${message}</span>`;
+            toast.className = `pointer-events-auto flex items-center gap-2 px-4 py-3 rounded-xl border shadow-lg text-xs sm:text-sm font-semibold fade-in ${colors}`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check'}"></i><span>${message}</span>`;
             container.appendChild(toast);
             setTimeout(() => {
                 toast.style.opacity = '0';
                 toast.style.transition = 'opacity 0.25s';
                 setTimeout(() => toast.remove(), 260);
-            }, 3400);
+            }, 3200);
         }
 
         function copyText(text, label = 'Teks') {
@@ -980,29 +938,26 @@
                 document.execCommand('copy');
                 showToast(`${label} berhasil disalin!`, 'success');
             } catch (e) {
-                showToast('Gagal menyalin otomatis. Silakan salin manual.', 'error');
+                showToast('Gagal menyalin otomatis.', 'error');
             }
             document.body.removeChild(ta);
         }
 
-        // --- 3. COUNTER & COUNTDOWN ---
         function syncRegisteredCountUI() {
             const el = document.getElementById('registered-count-display');
             if (el) el.textContent = playersList.length;
         }
 
-        function updateCountdown() {
+        // --- 3. COUNTDOWN TIMER ---
+        function updateCountdownUI() {
             const now = Date.now();
             const diff = deadlineTimestamp - now;
-            const dateLabel = document.getElementById('deadline-date-label');
-            if (dateLabel) {
-                dateLabel.textContent = new Date(deadlineTimestamp).toLocaleDateString('id-ID', {
-                    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
-                }) + ' WIB';
+            const dLabel = document.getElementById('deadline-date-label');
+            if (dLabel) {
+                const dt = new Date(deadlineTimestamp);
+                dLabel.textContent = dt.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) +
+                    ' pukul ' + dt.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
             }
-
-            const closedScreen = document.getElementById('closed-screen');
-            const wizardCard = document.getElementById('wizard-card');
 
             if (diff <= 0) {
                 document.getElementById('cd-days').textContent = '00';
@@ -1010,27 +965,27 @@
                 document.getElementById('cd-mins').textContent = '00';
                 document.getElementById('cd-secs').textContent = '00';
                 if (!state.isAdminManualMode) {
-                    closedScreen.classList.remove('hidden');
-                    wizardCard.classList.add('hidden');
+                    document.getElementById('wizard-card').classList.add('hidden');
+                    document.getElementById('closed-screen').classList.remove('hidden');
                 }
                 return;
             }
 
-            closedScreen.classList.add('hidden');
-            wizardCard.classList.remove('hidden');
+            document.getElementById('closed-screen').classList.add('hidden');
+            document.getElementById('wizard-card').classList.remove('hidden');
 
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const m = Math.floor((diff / (1000 * 60)) % 60);
-            const s = Math.floor((diff / 1000) % 60);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / (1000 * 60)) % 60);
+            const secs = Math.floor((diff / 1000) % 60);
 
-            document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
-            document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-            document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
-            document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+            document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+            document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
         }
 
-        // --- 4. WIZARD STEP LOGIC ---
+        // --- 4. LOGIKA WIZARD 4 LANGKAH ---
         function selectCategory(cat) {
             state.kategori = cat;
             document.getElementById('err-step-1').classList.add('hidden');
@@ -1045,63 +1000,45 @@
             if (cat === 'relawan') {
                 cardRel.classList.add('border-emerald-600', 'bg-emerald-50/40', 'ring-2', 'ring-emerald-200');
                 cardRel.classList.remove('border-slate-200');
-                chkRel.classList.add('text-emerald-600');
-                chkRel.classList.remove('text-emerald-200');
-
                 cardNon.classList.remove('border-amber-500', 'bg-amber-50/40', 'ring-2', 'ring-amber-200');
                 cardNon.classList.add('border-slate-200');
-                chkNon.classList.remove('text-amber-600');
-                chkNon.classList.add('text-amber-200');
-
+                chkRel.classList.replace('text-emerald-200', 'text-emerald-600');
+                chkNon.classList.replace('text-amber-600', 'text-amber-200');
                 if (!state.isAdminManualMode) {
                     codeBox.classList.remove('hidden');
-                    setTimeout(() => document.getElementById('input-internal-code').focus(), 100);
                 } else {
                     codeBox.classList.add('hidden');
                 }
             } else {
                 cardNon.classList.add('border-amber-500', 'bg-amber-50/40', 'ring-2', 'ring-amber-200');
                 cardNon.classList.remove('border-slate-200');
-                chkNon.classList.add('text-amber-600');
-                chkNon.classList.remove('text-amber-200');
-
                 cardRel.classList.remove('border-emerald-600', 'bg-emerald-50/40', 'ring-2', 'ring-emerald-200');
                 cardRel.classList.add('border-slate-200');
-                chkRel.classList.remove('text-emerald-600');
-                chkRel.classList.add('text-emerald-200');
-
+                chkNon.classList.replace('text-amber-200', 'text-amber-600');
+                chkRel.classList.replace('text-emerald-600', 'text-emerald-200');
                 codeBox.classList.add('hidden');
             }
-            updateStepProgressUI();
+            updateStepProgressVisibility();
         }
 
-        function setupStep2Fields() {
-            const badge = document.getElementById('step2-category-badge');
-            const fieldRef = document.getElementById('field-referensi');
-            if (state.kategori === 'relawan') {
-                badge.textContent = 'Relawan biMBA (Internal)';
-                badge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800';
-                fieldRef.classList.add('hidden');
-            } else {
-                badge.textContent = 'Bukan Pekerja biMBA (Umum)';
-                badge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800';
-                fieldRef.classList.remove('hidden');
-            }
+        function updateStepProgressVisibility() {
+            const isRelawan = state.kategori === 'relawan';
+            document.getElementById('wrap-line-2-3').classList.toggle('hidden', isRelawan);
+            document.getElementById('wrap-dot-3').classList.toggle('hidden', isRelawan);
         }
 
         function handleBuktiUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
-            state.buktiFileName = file.name;
             const reader = new FileReader();
             reader.onload = function(e) {
                 state.buktiDataUrl = e.target.result;
+                state.buktiFileName = file.name;
                 document.getElementById('bukti-preview-img').src = e.target.result;
-                document.getElementById('bukti-file-name').textContent = file.name;
+                document.getElementById('bukti-file-name').textContent = '✓ ' + file.name;
                 document.getElementById('upload-placeholder').classList.add('hidden');
                 document.getElementById('upload-preview-wrap').classList.remove('hidden');
                 document.getElementById('err-bukti').classList.add('hidden');
-                document.getElementById('upload-dropzone').classList.remove('border-red-400', 'bg-red-50/40');
             };
             reader.readAsDataURL(file);
         }
@@ -1118,41 +1055,41 @@
                     return false;
                 }
                 if (state.kategori === 'relawan' && !state.isAdminManualMode) {
-                    const codeVal = document.getElementById('input-internal-code').value.trim().toUpperCase();
-                    if (codeVal !== internalSecretCode.toUpperCase()) {
+                    const codeVal = (document.getElementById('input-internal-code').value || '').trim().toUpperCase();
+                    if (codeVal !== internalSecretCode) {
                         document.getElementById('err-internal-code').classList.remove('hidden');
-                        showToast('Kode internal tidak cocok. Pastikan Anda karyawan aktif biMBA.', 'error');
+                        showToast('Kode internal Relawan biMBA tidak sesuai.', 'error');
                         return false;
                     }
                 }
-                setupStep2Fields();
                 return true;
             }
 
             if (state.currentStep === 2) {
-                let valid = true;
                 const nama = document.getElementById('input-nama').value.trim();
-                const wa = document.getElementById('input-wa').value.trim().replace(/[^0-9]/g, '');
+                const wa = document.getElementById('input-wa').value.replace(/[^0-9]/g, '');
                 const ref = document.getElementById('input-referensi').value.trim();
                 const checkedPosisi = Array.from(document.querySelectorAll('input[name="posisi"]:checked')).map(el => el.value);
 
+                let ok = true;
                 document.getElementById('err-nama').classList.toggle('hidden', Boolean(nama));
-                if (!nama) valid = false;
+                if (!nama) ok = false;
 
                 document.getElementById('err-wa').classList.toggle('hidden', wa.length >= 10);
-                if (wa.length < 10) valid = false;
+                if (wa.length < 10) ok = false;
 
                 if (state.kategori === 'non_relawan') {
                     document.getElementById('err-referensi').classList.toggle('hidden', Boolean(ref));
-                    if (!ref) valid = false;
-                } else {
-                    document.getElementById('err-referensi').classList.add('hidden');
+                    if (!ref) ok = false;
                 }
 
                 document.getElementById('err-posisi').classList.toggle('hidden', checkedPosisi.length > 0);
-                if (checkedPosisi.length === 0) valid = false;
+                if (checkedPosisi.length === 0) ok = false;
 
-                if (!valid) return false;
+                if (!ok) {
+                    showToast('Lengkapi semua kolom wajib terlebih dahulu.', 'error');
+                    return false;
+                }
 
                 state.nama = nama;
                 state.wa = wa;
@@ -1163,22 +1100,17 @@
 
             if (state.currentStep === 3) {
                 state.bankTujuan = document.getElementById('input-bank').value;
-                let valid = true;
-
-                if (!state.buktiFileName) {
+                let ok = true;
+                if (!state.buktiDataUrl) {
                     document.getElementById('err-bukti').classList.remove('hidden');
-                    document.getElementById('upload-dropzone').classList.add('border-red-400', 'bg-red-50/40');
-                    valid = false;
+                    ok = false;
                 }
-
-                const chkTf = document.getElementById('check-transfer').checked;
-                if (!chkTf) {
+                if (!document.getElementById('check-transfer').checked) {
                     document.getElementById('err-transfer').classList.remove('hidden');
-                    valid = false;
+                    ok = false;
                 }
-
-                if (!valid) {
-                    showToast('Lengkapi unggah bukti transfer & centang konfirmasi.', 'error');
+                if (!ok) {
+                    showToast('Unggah bukti transfer dan centang konfirmasi pembayaran.', 'error');
                     return false;
                 }
                 return true;
@@ -1187,38 +1119,27 @@
             return true;
         }
 
-        function populateSummary() {
-            document.getElementById('sum-reg-id').textContent = '#' + state.regId;
-            document.getElementById('sum-kategori').textContent = state.kategori === 'relawan' ? 'Relawan biMBA' : 'Bukan Pekerja biMBA (Umum)';
-            document.getElementById('sum-nama').textContent = state.nama;
-            document.getElementById('sum-wa').textContent = state.wa;
-            document.getElementById('sum-posisi').textContent = state.posisi.join(', ');
-
-            const refRow = document.getElementById('sum-ref-row');
-            if (state.kategori === 'non_relawan') {
-                refRow.classList.remove('hidden');
-                document.getElementById('sum-ref').textContent = state.referensi;
-                const sumHtm = document.getElementById('sum-htm');
-                sumHtm.textContent = `Rp 20.000 (${state.bankTujuan} • Menunggu Verifikasi)`;
-                sumHtm.className = 'font-bold text-amber-700 text-right';
-            } else {
-                refRow.classList.add('hidden');
-                const sumHtm = document.getElementById('sum-htm');
-                sumHtm.textContent = 'Gratis (Khusus Relawan biMBA)';
-                sumHtm.className = 'font-bold text-emerald-700 text-right';
-            }
-        }
-
         function nextStep() {
             if (!validateCurrentStep()) return;
+
             if (state.currentStep === 1) {
                 state.currentStep = 2;
+                const isRel = state.kategori === 'relawan';
+                document.getElementById('step2-category-badge').textContent = isRel ? 'Relawan biMBA' : 'Bukan Relawan biMBA (Umum)';
+                document.getElementById('step2-category-badge').className = isRel
+                    ? 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800'
+                    : 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800';
+                document.getElementById('field-referensi').classList.toggle('hidden', isRel);
             } else if (state.currentStep === 2) {
                 state.currentStep = state.kategori === 'relawan' ? 4 : 3;
             } else if (state.currentStep === 3) {
                 state.currentStep = 4;
             }
-            if (state.currentStep === 4) populateSummary();
+
+            if (state.currentStep === 4) {
+                if (!state.regId) state.regId = generateRegId();
+                populateSummary();
+            }
             updateUI();
         }
 
@@ -1226,63 +1147,67 @@
             if (state.isSubmitted) return;
             if (state.currentStep === 4) {
                 state.currentStep = state.kategori === 'relawan' ? 2 : 3;
-            } else if (state.currentStep === 3) {
-                state.currentStep = 2;
-            } else if (state.currentStep === 2) {
-                state.currentStep = 1;
+            } else if (state.currentStep > 1) {
+                state.currentStep--;
             }
             updateUI();
         }
 
-        function updateStepProgressUI() {
+        function populateSummary() {
             const isRel = state.kategori === 'relawan';
-            document.getElementById('wrap-dot-3').classList.toggle('hidden', isRel);
-            document.getElementById('wrap-line-2-3').classList.toggle('hidden', isRel);
-            document.getElementById('dot-step-4').textContent = isRel ? '3' : '4';
+            document.getElementById('sum-reg-id').textContent = '#' + state.regId;
+            document.getElementById('sum-kategori').textContent = isRel ? 'Relawan biMBA (Internal)' : 'Bukan Relawan biMBA (Umum)';
+            document.getElementById('sum-nama').textContent = state.nama;
+            document.getElementById('sum-wa').textContent = state.wa;
+            document.getElementById('sum-ref-row').classList.toggle('hidden', isRel);
+            document.getElementById('sum-ref').textContent = state.referensi || '-';
+            document.getElementById('sum-posisi').textContent = state.posisi.join(', ');
+            document.getElementById('sum-htm').textContent = isRel
+                ? 'Gratis (Khusus Internal Relawan biMBA)'
+                : `Rp 20.000 (${state.bankTujuan} • Menunggu Verifikasi)`;
+            document.getElementById('sum-htm').className = isRel
+                ? 'font-bold text-emerald-700 text-right'
+                : 'font-bold text-amber-700 text-right';
+        }
 
-            const steps = [1, 2, 3, 4];
-            steps.forEach(s => {
-                const dot = document.getElementById(`dot-step-${s}`);
-                if (!dot) return;
-                if (s < state.currentStep || (s === 4 && state.isSubmitted)) {
+        function updateUI() {
+            [1, 2, 3, 4].forEach(n => {
+                document.getElementById(`step-${n}`).classList.toggle('hidden', state.currentStep !== n);
+                const dot = document.getElementById(`dot-step-${n}`);
+                if (n < state.currentStep || (n === 4 && state.isSubmitted)) {
                     dot.className = 'w-7 h-7 rounded-full bg-emerald-600 text-white text-xs font-bold flex items-center justify-center';
-                } else if (s === state.currentStep) {
-                    dot.className = 'w-7 h-7 rounded-full bg-maroon-700 text-white text-xs font-bold flex items-center justify-center ring-4 ring-maroon-100';
+                    dot.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i>';
+                } else if (n === state.currentStep) {
+                    dot.className = 'w-7 h-7 rounded-full bg-maroon-700 text-white text-xs font-bold flex items-center justify-center';
+                    dot.textContent = n;
                 } else {
                     dot.className = 'w-7 h-7 rounded-full bg-slate-200 text-slate-500 text-xs font-bold flex items-center justify-center';
+                    dot.textContent = n;
                 }
             });
 
             document.getElementById('line-1-2').style.width = state.currentStep >= 2 ? '100%' : '0%';
             document.getElementById('line-2-3').style.width = state.currentStep >= 3 ? '100%' : '0%';
             document.getElementById('line-3-4').style.width = state.currentStep >= 4 ? '100%' : '0%';
-        }
 
-        function updateUI() {
-            [1, 2, 3, 4].forEach(s => {
-                document.getElementById(`step-${s}`).classList.toggle('hidden', s !== state.currentStep);
-            });
-            updateStepProgressUI();
-
-            const btnPrev = document.getElementById('btn-prev');
-            const btnNext = document.getElementById('btn-next');
-            const btnSubmit = document.getElementById('btn-submit');
-            const wizardNav = document.getElementById('wizard-nav');
+            const nav = document.getElementById('wizard-nav');
             const postActions = document.getElementById('post-submit-actions');
 
             if (state.isSubmitted) {
-                wizardNav.classList.add('hidden');
+                nav.classList.add('hidden');
                 postActions.classList.remove('hidden');
             } else {
-                wizardNav.classList.remove('hidden');
+                nav.classList.remove('hidden');
                 postActions.classList.add('hidden');
-                btnPrev.classList.toggle('invisible', state.currentStep === 1);
-                btnNext.classList.toggle('hidden', state.currentStep === 4);
-                btnSubmit.classList.toggle('hidden', state.currentStep !== 4);
+                document.getElementById('btn-prev').classList.toggle('invisible', state.currentStep === 1);
+                document.getElementById('btn-next').classList.toggle('hidden', state.currentStep === 4);
+                document.getElementById('btn-submit').classList.toggle('hidden', state.currentStep !== 4);
             }
         }
 
         async function submitRegistration() {
+            if (isSubmitting) return;
+
             const checkKomitmen = document.getElementById('check-komitmen').checked;
             if (!checkKomitmen) {
                 document.getElementById('err-komitmen').classList.remove('hidden');
@@ -1291,7 +1216,23 @@
                 return;
             }
 
-            state.isSubmitted = true;
+            isSubmitting = true;
+            const btnSubmit = document.getElementById('btn-submit');
+            const btnPrev = document.getElementById('btn-prev');
+            const loadingOverlay = document.getElementById('submit-loading-overlay');
+            const loadingBar = document.getElementById('submit-loading-bar');
+            const originalBtnHtml = btnSubmit.innerHTML;
+
+            // Tampilkan indikator loading 3,5 detik & kunci tombol agar tidak double-submit
+            btnSubmit.disabled = true;
+            btnPrev.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Memproses...`;
+            loadingBar.style.width = '0%';
+            loadingOverlay.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                setTimeout(() => { loadingBar.style.width = '100%'; }, 40);
+            });
+
             const nowStr = new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' +
                 new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
 
@@ -1310,40 +1251,58 @@
                 createdAt: nowStr
             };
 
-            if (window.cloudForm && window.cloudForm.isReady()) {
-                await window.cloudForm.savePlayer(newPlayer);
-            } else {
-                playersList.push(newPlayer);
-                syncRegisteredCountUI();
-            }
+            const minDelay = new Promise(resolve => setTimeout(resolve, 3500));
+            const saveTask = (async () => {
+                if (window.cloudForm && window.cloudForm.isReady()) {
+                    await window.cloudForm.savePlayer(newPlayer);
+                } else {
+                    playersList.push(newPlayer);
+                    syncRegisteredCountUI();
+                }
+            })();
 
-            document.getElementById('commitment-box').classList.add('hidden');
-            document.getElementById('submitted-banner').classList.remove('hidden');
-            updateUI();
+            try {
+                await Promise.all([minDelay, saveTask]);
+                state.isSubmitted = true;
+                document.getElementById('commitment-box').classList.add('hidden');
+                document.getElementById('submitted-banner').classList.remove('hidden');
+                updateUI();
 
-            if (typeof confetti === 'function') {
-                confetti({ particleCount: 90, spread: 70, origin: { y: 0.65 } });
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 90, spread: 70, origin: { y: 0.65 } });
+                }
+                showToast('Pendaftaran berhasil tercatat secara online!', 'success');
+            } catch (err) {
+                console.error('Gagal mengirim pendaftaran:', err);
+                showToast('Terjadi kendala saat menyimpan pendaftaran. Silakan coba lagi.', 'error');
+            } finally {
+                loadingOverlay.classList.add('hidden');
+                loadingBar.style.width = '0%';
+                btnSubmit.disabled = false;
+                btnPrev.disabled = false;
+                btnSubmit.innerHTML = originalBtnHtml;
+                isSubmitting = false;
             }
-            showToast('Pendaftaran berhasil tercatat secara online!', 'success');
         }
 
         function resetWizard() {
             state.currentStep = 1;
-            state.regId = generateRegId();
             state.kategori = '';
             state.nama = '';
             state.wa = '';
             state.referensi = '';
             state.posisi = [];
-            state.buktiFileName = '';
+            state.bankTujuan = 'Transfer BCA';
             state.buktiDataUrl = '';
+            state.buktiFileName = '';
+            state.regId = '';
             state.isSubmitted = false;
 
             document.getElementById('input-internal-code').value = '';
             document.getElementById('input-nama').value = '';
             document.getElementById('input-wa').value = '';
             document.getElementById('input-referensi').value = '';
-            document.querySelectorAll('input[name="posisi"]').forEach(el => el.checked = false);
+            document.querySelectorAll('input[name="posisi"]').forEach(c => c.checked = false);
             document.getElementById('input-bukti').value = '';
             document.getElementById('upload-placeholder').classList.remove('hidden');
             document.getElementById('upload-preview-wrap').classList.add('hidden');
@@ -1354,218 +1313,209 @@
             document.getElementById('internal-code-box').classList.add('hidden');
 
             ['card-relawan', 'card-non-relawan'].forEach(id => {
-                const c = document.getElementById(id);
-                c.classList.remove('border-emerald-600', 'bg-emerald-50/40', 'ring-2', 'ring-emerald-200', 'border-amber-500', 'bg-amber-50/40', 'ring-amber-200');
-                c.classList.add('border-slate-200');
+                const el = document.getElementById(id);
+                el.classList.remove('border-emerald-600', 'bg-emerald-50/40', 'ring-2', 'ring-emerald-200', 'border-amber-500', 'bg-amber-50/40', 'ring-amber-200');
+                el.classList.add('border-slate-200');
             });
+
+            updateStepProgressVisibility();
             updateUI();
         }
 
-        // --- 5. UNDUH E-KWITANSI (PNG) & KONFIRMASI WA ---
-        function getDefaultVfcSvgDataUri() {
-            const svgStr = DEFAULT_VFC_SVG.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ');
-            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr.trim());
+        // --- 5. E-KWITANSI PNG (DENGAN LOGO SAMAR & STEMPEL LUNAS) & KONFIRMASI WA ---
+        function loadCanvasLogoChain(urls) {
+            return new Promise((resolve) => {
+                let idx = 0;
+                function tryNext() {
+                    if (idx >= urls.length) return resolve(null);
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+                    img.referrerPolicy = 'no-referrer';
+                    img.onload = () => resolve(img);
+                    img.onerror = () => { idx++; tryNext(); };
+                    img.src = urls[idx];
+                }
+                tryNext();
+            });
         }
 
-        function drawLunasStamp(ctx, cx, cy, isRelawan) {
-            ctx.save();
-            ctx.translate(cx, cy);
-            ctx.rotate(-12 * Math.PI / 180);
-
-            const w = 196;
-            const h = 76;
-            const x = -w / 2;
-            const y = -h / 2;
-
-            // Latar tipis stempel
-            ctx.fillStyle = 'rgba(236, 253, 245, 0.72)';
-            ctx.beginPath();
-            ctx.roundRect(x, y, w, h, 10);
-            ctx.fill();
-
-            // Bingkai luar stempel
-            ctx.strokeStyle = 'rgba(4, 120, 87, 0.88)';
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            ctx.roundRect(x, y, w, h, 10);
-            ctx.stroke();
-
-            // Bingkai dalam stempel
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.roundRect(x + 6, y + 6, w - 12, h - 12, 6);
-            ctx.stroke();
-
-            // Teks utama LUNAS
-            ctx.fillStyle = 'rgba(4, 120, 87, 0.92)';
-            ctx.font = '800 34px Inter, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('LUNAS', 0, -6);
-
-            // Subteks stempel
-            ctx.font = '700 11px Inter, sans-serif';
-            ctx.fillText(isRelawan ? 'GRATIS • RELAWAN biMBA' : 'HTM RP 20.000 • VFC biMBA', 0, 20);
-
-            ctx.restore();
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'alphabetic';
-        }
-
-        function downloadReceiptPNG() {
+        async function downloadReceiptPNG() {
             const canvas = document.createElement('canvas');
-            canvas.width = 900;
-            canvas.height = 560;
+            // Format E-Pass vertikal (portrait panjang ke bawah)
+            canvas.width = 560;
+            canvas.height = 880;
             const ctx = canvas.getContext('2d');
 
-            const drawBodyAndSave = (vfcImg) => {
-                // Badge ID
-                ctx.fillStyle = 'rgba(255,255,255,0.18)';
-                ctx.fillRect(680, 42, 175, 46);
-                ctx.fillStyle = '#ffffff';
-                ctx.font = '800 22px Inter, sans-serif';
-                ctx.fillText('#' + state.regId, 712, 73);
-
-                // Watermark logo samar di area kanan bawah
-                if (vfcImg) {
-                    ctx.save();
-                    ctx.globalAlpha = 0.14;
-                    ctx.drawImage(vfcImg, 645, 285, 185, 185);
-                    ctx.restore();
-                }
-
-                // Baris Data
-                const rows = [
-                    ['Kategori', state.kategori === 'relawan' ? 'Relawan biMBA (Internal)' : 'Bukan Pekerja biMBA (Umum)'],
-                    ['Nama Peserta', state.nama],
-                    ['No. WhatsApp', state.wa],
-                    ['Posisi Bermain', state.posisi.join(', ')],
-                    ['Status HTM', state.kategori === 'relawan' ? 'GRATIS (Relawan biMBA)' : `Rp 20.000 (${state.bankTujuan})`]
-                ];
-                if (state.referensi) rows.splice(3, 0, ['Referensi', state.referensi]);
-
-                let y = 190;
-                rows.forEach(([k, v]) => {
-                    ctx.fillStyle = '#64748b';
-                    ctx.font = '600 18px Inter, sans-serif';
-                    ctx.fillText(k, 45, y);
-                    ctx.fillStyle = '#0f172a';
-                    ctx.font = '700 19px Inter, sans-serif';
-                    ctx.fillText(v, 280, y);
-                    ctx.strokeStyle = '#e2e8f0';
-                    ctx.beginPath();
-                    ctx.moveTo(45, y + 18);
-                    ctx.lineTo(855, y + 18);
-                    ctx.stroke();
-                    y += 54;
-                });
-
-                // Stempel LUNAS di atas logo samar (kanan bawah)
-                drawLunasStamp(ctx, 738, 382, state.kategori === 'relawan');
-
-                ctx.fillStyle = '#64748b';
-                ctx.font = 'italic 15px Inter, sans-serif';
-                ctx.fillText('"Tetap Semangat dan Terus Belajar"', 45, 525);
-
-                const link = document.createElement('a');
-                link.download = `E-Pass-FunFootball-${state.regId}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                showToast('E-Kwitansi berhasil diunduh!', 'success');
-            };
-
-            // Latar putih
-            ctx.fillStyle = '#ffffff';
+            // Background krem lembut
+            ctx.fillStyle = '#fefce8';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Header Merah Marun
-            const grad = ctx.createLinearGradient(0, 0, 900, 0);
-            grad.addColorStop(0, '#5a0b15');
-            grad.addColorStop(1, '#8b1523');
-            ctx.fillStyle = grad;
-            ctx.fillRect(0, 0, 900, 130);
+            // Header Merah Marun (atas)
+            const headerH = 240;
+            ctx.fillStyle = '#7f111f';
+            ctx.fillRect(0, 0, canvas.width, headerH);
 
-            const drawHeaderWithImg = (img) => {
-                if (img) {
-                    ctx.drawImage(img, 36, 22, 86, 86);
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '800 30px Inter, sans-serif';
-                    ctx.fillText('E-PASS FUN FOOTBALL biMBA', 142, 62);
-                    ctx.fillStyle = '#fde047';
-                    ctx.font = '700 16px Inter, sans-serif';
-                    ctx.fillText('VOLUNTEER FOOTBALL COMMUNITY • YPAI 1996', 142, 92);
-                } else {
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '800 30px Inter, sans-serif';
-                    ctx.fillText('E-PASS FUN FOOTBALL biMBA', 45, 62);
-                    ctx.fillStyle = '#fde047';
-                    ctx.font = '700 16px Inter, sans-serif';
-                    ctx.fillText('VOLUNTEER FOOTBALL COMMUNITY • YPAI 1996', 45, 92);
-                }
-                try {
-                    drawBodyAndSave(img);
-                } catch (err) {
-                    console.warn('Fallback E-Kwitansi tanpa CORS image:', err);
-                    const safeFallback = new Image();
-                    safeFallback.onload = () => drawHeaderWithImg(safeFallback);
-                    safeFallback.onerror = () => drawBodyAndSave(null);
-                    safeFallback.src = getDefaultVfcSvgDataUri();
-                }
-            };
+            // Aksen garis vertikal halus pada header
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
+            for (let x = 0; x < canvas.width; x += 48) {
+                ctx.fillRect(x, 0, 24, headerH);
+            }
 
-            const loadCanvasLogoChain = (urls, idx = 0) => {
-                if (idx >= urls.length) {
-                    drawHeaderWithImg(null);
-                    return;
-                }
-                const img = new Image();
-                img.crossOrigin = 'anonymous';
-                img.referrerPolicy = 'no-referrer';
-                img.onload = () => drawHeaderWithImg(img);
-                img.onerror = () => loadCanvasLogoChain(urls, idx + 1);
-                img.src = urls[idx];
-            };
+            // Muat logo VFC asli dari Google Drive
+            const vfcImg = await loadCanvasLogoChain([LOGO_VFC_URL, LOGO_VFC_FALLBACK]);
+            if (vfcImg) {
+                ctx.drawImage(vfcImg, (canvas.width - 88) / 2, 22, 88, 88);
+            }
 
-            loadCanvasLogoChain([
-                LOGO_VFC_URL,
-                LOGO_VFC_FALLBACK,
-                getDefaultVfcSvgDataUri()
-            ]);
+            // Judul & Subjudul Header (rata tengah)
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '800 24px Inter, sans-serif';
+            ctx.fillText('E-PASS FUN FOOTBALL biMBA', canvas.width / 2, 142);
+
+            ctx.fillStyle = '#facc15';
+            ctx.font = '700 13px Inter, sans-serif';
+            ctx.fillText('VOLUNTEER FOOTBALL COMMUNITY • YPAI 1996', canvas.width / 2, 166);
+
+            // Lencana ID Registrasi di tengah bawah header
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.16)';
+            ctx.fillRect((canvas.width - 180) / 2, 184, 180, 38);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect((canvas.width - 180) / 2, 184, 180, 38);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '800 20px Inter, sans-serif';
+            ctx.fillText('#' + state.regId, canvas.width / 2, 210);
+
+            // Garis potong tiket horizontal + lekukan sisi kiri & kanan
+            ctx.save();
+            ctx.setLineDash([7, 6]);
+            ctx.strokeStyle = '#cbd5e1';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(24, headerH);
+            ctx.lineTo(canvas.width - 24, headerH);
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.fillStyle = '#e2e8f0';
+            ctx.beginPath();
+            ctx.arc(0, headerH, 14, 0, Math.PI * 2);
+            ctx.arc(canvas.width, headerH, 14, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Watermark Logo VFC Samar di area kanan bawah
+            if (vfcImg) {
+                ctx.save();
+                ctx.globalAlpha = 0.14;
+                ctx.drawImage(vfcImg, 330, 630, 190, 190);
+                ctx.restore();
+            }
+
+            // Stempel LUNAS miring elegan di atas watermark
+            ctx.save();
+            ctx.translate(425, 725);
+            ctx.rotate(-0.22);
+            ctx.strokeStyle = 'rgba(22, 163, 74, 0.85)';
+            ctx.lineWidth = 4.5;
+            ctx.strokeRect(-92, -32, 184, 64);
+            ctx.lineWidth = 1.8;
+            ctx.strokeRect(-85, -25, 170, 50);
+            ctx.fillStyle = 'rgba(22, 163, 74, 0.9)';
+            ctx.font = '900 32px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('LUNAS', 0, 11);
+            ctx.restore();
+
+            // Detail Peserta (disusun vertikal rapi ke bawah)
+            ctx.textAlign = 'left';
+            const isRel = state.kategori === 'relawan';
+            const rows = [
+                ['KATEGORI PESERTA', isRel ? 'Relawan biMBA (Internal)' : 'Bukan Relawan biMBA (Umum)'],
+                ['NAMA PESERTA', state.nama],
+                ['NO. WHATSAPP', state.wa],
+                ...(isRel ? [] : [['REFERENSI RELAWAN', state.referensi || '-']]),
+                ['POSISI BERMAIN', state.posisi.join(', ')],
+                ['STATUS HTM / KAS', isRel ? 'Gratis (Internal biMBA)' : `Rp 20.000 (${state.bankTujuan})`]
+            ];
+
+            let y = 286;
+            const rowGap = isRel ? 76 : 66;
+            rows.forEach(([label, val], idx) => {
+                ctx.fillStyle = '#64748b';
+                ctx.font = '700 12px Inter, sans-serif';
+                ctx.fillText(label, 40, y);
+
+                ctx.fillStyle = '#0f172a';
+                ctx.font = '800 19px Inter, sans-serif';
+                ctx.fillText(val, 40, y + 25);
+
+                if (idx < rows.length - 1) {
+                    ctx.strokeStyle = 'rgba(148, 163, 184, 0.28)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(40, y + 40);
+                    ctx.lineTo(canvas.width - 40, y + 40);
+                    ctx.stroke();
+                }
+                y += rowGap;
+            });
+
+            // Footer Slogan
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(40, 818);
+            ctx.lineTo(canvas.width - 40, 818);
+            ctx.stroke();
+
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#475569';
+            ctx.font = 'italic 600 15px Inter, sans-serif';
+            ctx.fillText('"Tetap Semangat dan Terus Belajar"', canvas.width / 2, 850);
+
+            try {
+                const a = document.createElement('a');
+                a.href = canvas.toDataURL('image/png');
+                a.download = `E-Pass-${state.regId}-${state.nama.replace(/\s+/g, '_')}.png`;
+                a.click();
+                showToast('E-Pass berhasil diunduh!', 'success');
+            } catch (e) {
+                showToast('Gagal mengekspor gambar E-Pass.', 'error');
+            }
         }
 
         function sendConfirmationWA() {
-            const katLabel = state.kategori === 'relawan' ? 'Relawan biMBA (Internal)' : 'Bukan Pekerja biMBA (Umum)';
-            const htmLabel = state.kategori === 'relawan' ? 'Gratis (Khusus Relawan)' : `Rp 20.000 (${state.bankTujuan})`;
-            let msg = `Halo Panitia Fun Football biMBA!\n\nSaya telah mendaftar dengan rincian:\n`;
-            msg += `• Kode: #${state.regId}\n`;
-            msg += `• Kategori: ${katLabel}\n`;
-            msg += `• Nama: ${state.nama}\n`;
-            msg += `• No. WA: ${state.wa}\n`;
-            if (state.referensi) msg += `• Referensi: ${state.referensi}\n`;
-            msg += `• Posisi: ${state.posisi.join(', ')}\n`;
-            msg += `• Status HTM: ${htmLabel}\n\n`;
-            msg += `Siap hadir tepat waktu & menjunjung sportivitas!`;
-            openWAPreviewModal(msg, ADMIN_WA_NUMBER);
+            const isRel = state.kategori === 'relawan';
+            let msg = `*KONFIRMASI PENDAFTARAN FUN FOOTBALL biMBA*\n`;
+            msg += `Kode Registrasi: *#${state.regId}*\n`;
+            msg += `Kategori: ${isRel ? 'Relawan biMBA (Internal)' : 'Bukan Relawan biMBA (Umum)'}\n`;
+            msg += `Nama: *${state.nama}*\n`;
+            msg += `No. WA: ${state.wa}\n`;
+            if (!isRel && state.referensi) msg += `Referensi Relawan: ${state.referensi}\n`;
+            msg += `Posisi: ${state.posisi.join(', ')}\n`;
+            msg += `Status HTM: ${isRel ? 'Gratis (Internal)' : `Rp 20.000 (${state.bankTujuan})`}\n\n`;
+            msg += `Saya siap hadir tepat waktu & menjunjung sportivitas. Terima kasih!`;
+
+            const url = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank', 'noopener');
         }
 
-        // --- 6. HELPER PEMBAGIAN 2 TIM & URUTAN POSISI ---
+        // --- 6. PEMBAGIAN TIM & DSP PUBLIK ---
         function getPlayerTeam(p) {
-            return p.teamOverride || p.kategori;
+            if (p.teamOverride === 'A' || p.teamOverride === 'B') return p.teamOverride;
+            return p.kategori === 'relawan' ? 'A' : 'B';
         }
 
         function sortPlayersByPosition(list) {
-            const rank = (posArr) => {
-                const s = (posArr || []).join(' ').toLowerCase();
-                if (s.includes('penjaga gawang')) return 1;
-                if (s.includes('belakang')) return 2;
-                if (s.includes('tengah')) return 3;
-                if (s.includes('depan')) return 4;
-                return 5;
-            };
-            return [...list].sort((a, b) => rank(a.posisi) - rank(b.posisi) || (a.nama || '').localeCompare(b.nama || ''));
+            const order = { 'Penjaga Gawang': 1, 'Pemain Belakang': 2, 'Pemain Tengah': 3, 'Pemain Depan': 4 };
+            return [...list].sort((a, b) => {
+                const pa = order[(a.posisi && a.posisi[0]) || ''] || 9;
+                const pb = order[(b.posisi && b.posisi[0]) || ''] || 9;
+                return pa - pb || (a.nama || '').localeCompare(b.nama || '');
+            });
         }
 
-        // --- 7. INFO DSP 2 TIM PUBLIK (TANPA LOGIN) ---
         function openPublicTransparency() {
             renderPublicTransparency();
             document.getElementById('public-transparency-modal').classList.remove('hidden');
@@ -1576,41 +1526,41 @@
         }
 
         function renderPublicTransparency() {
-            const timA = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'relawan'));
-            const timB = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'non_relawan'));
-            const container = document.getElementById('public-dsp-body');
+            const timA = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'A'));
+            const timB = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'B'));
 
-            const buildTeamCard = (title, badgeColor, list) => `
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                    <div class="${badgeColor} text-white px-4 py-3 flex items-center justify-between">
+            const renderTeamCard = (title, colorClass, badgeText, list) => `
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="${colorClass} px-4 py-3 flex items-center justify-between text-white">
                         <h4 class="font-display text-sm font-extrabold">${title}</h4>
-                        <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-xs font-bold">${list.length} Pemain</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-xs font-bold">${list.length} Pemain • ${badgeText}</span>
                     </div>
                     <div class="divide-y divide-slate-100">
                         ${list.length === 0
-                            ? `<p class="p-4 text-center text-xs text-slate-400">Belum ada pemain terdaftar di tim ini.</p>`
-                            : list.map((p, idx) => `
-                                <div class="px-4 py-2.5 flex items-center justify-between gap-3 text-xs sm:text-sm">
-                                    <div class="flex items-center gap-2.5">
-                                        <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center shrink-0">${idx + 1}</span>
-                                        <div>
-                                            <p class="font-bold text-slate-800">${p.nama} ${p.teamOverride ? '<span class="text-[10px] font-bold text-blue-600">(Bantu Tim)</span>' : ''}</p>
-                                            <p class="text-[11px] text-slate-400">${maskPhone(p.wa)}</p>
-                                        </div>
+                            ? `<p class="p-4 text-xs text-slate-400 text-center">Belum ada pemain terdaftar di tim ini.</p>`
+                            : list.map((p, i) => `
+                                <div class="px-4 py-2.5 flex items-center justify-between gap-2 text-xs sm:text-sm">
+                                    <div>
+                                        <span class="font-bold text-slate-400 mr-1.5">${i + 1}.</span>
+                                        <span class="font-bold text-slate-800">${p.nama}</span>
+                                        <span class="text-[11px] text-slate-400 ml-1">(${maskWA(p.wa)})</span>
                                     </div>
-                                    <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold text-right">${(p.posisi || []).join(', ')}</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold">${(p.posisi || []).join(', ')}</span>
                                 </div>
                             `).join('')}
                     </div>
                 </div>
             `;
 
-            container.innerHTML =
-                buildTeamCard('TIM A: RELAWAN biMBA', 'bg-maroon-700', timA) +
-                buildTeamCard('TIM B: BUKAN RELAWAN (UMUM / TAMU)', 'bg-amber-600', timB);
+            document.getElementById('public-dsp-body').innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${renderTeamCard('TIM A — RELAWAN biMBA', 'bg-maroon-700', 'Internal', timA)}
+                    ${renderTeamCard('TIM B — NON-RELAWAN', 'bg-slate-800', 'Umum / Tamu', timB)}
+                </div>
+            `;
         }
 
-        // --- 8. LOGIN & DASHBOARD ADMIN ---
+        // --- 7. PANEL ADMIN & VERIFIKASI HTM OTOMATIS KE KAS ---
         function openAdminAccess() {
             if (loggedInAdmin) {
                 openAdminDashboard();
@@ -1639,16 +1589,9 @@
             showToast(`Selamat datang, ${loggedInAdmin}!`, 'success');
         }
 
-        function logoutAdmin() {
-            loggedInAdmin = '';
-            document.getElementById('top-admin-btn-text').textContent = 'Login Admin';
-            closeAdminDashboard();
-            showToast('Berhasil keluar dari Panel Admin.', 'info');
-        }
-
         function openAdminDashboard() {
             document.getElementById('adm-logged-name').textContent = loggedInAdmin;
-            renderAdminDashboard();
+            renderAdminDSPTable();
             document.getElementById('admin-dashboard-modal').classList.remove('hidden');
         }
 
@@ -1656,110 +1599,136 @@
             document.getElementById('admin-dashboard-modal').classList.add('hidden');
         }
 
-        function renderAdminDashboard() {
-            const timA = playersList.filter(p => getPlayerTeam(p) === 'relawan');
-            const timB = playersList.filter(p => getPlayerTeam(p) === 'non_relawan');
-            const htmLunas = playersList.filter(p => p.kategori === 'non_relawan' && p.paymentStatus === 'lunas')
-                .reduce((sum, p) => sum + (p.htmAmount || 20000), 0);
-            const pendingCount = playersList.filter(p => p.kategori === 'non_relawan' && p.paymentStatus !== 'lunas').length;
+        function logoutAdmin() {
+            loggedInAdmin = '';
+            document.getElementById('top-admin-btn-text').textContent = 'Login Admin';
+            disableAdminManualMode();
+            closeAdminDashboard();
+            showToast('Berhasil keluar dari Panel Admin.', 'info');
+        }
 
-            document.getElementById('adm-kpi-total').textContent = playersList.length;
-            document.getElementById('adm-kpi-split').textContent = `Tim A (Relawan): ${timA.length} • Tim B (Umum): ${timB.length}`;
-
-            const diff = Math.abs(timA.length - timB.length);
-            const balEl = document.getElementById('adm-kpi-balance');
-            if (diff <= 1) {
-                balEl.textContent = 'Seimbang';
-                balEl.className = 'font-display text-lg font-extrabold text-emerald-700';
-            } else {
-                balEl.textContent = `Selisih ${diff} Pemain`;
-                balEl.className = 'font-display text-lg font-extrabold text-amber-600';
+        function toggleAdminSettingsModal() {
+            const modal = document.getElementById('admin-settings-modal');
+            const willOpen = modal.classList.contains('hidden');
+            if (willOpen) {
+                document.getElementById('admin-internal-code').value = internalSecretCode;
             }
+            modal.classList.toggle('hidden');
+        }
 
-            document.getElementById('adm-kpi-htm-lunas').textContent = formatRupiah(htmLunas);
-            document.getElementById('adm-kpi-htm-pending').innerHTML = pendingCount > 0
-                ? `<i class="fa-solid fa-clock text-amber-300"></i> ${pendingCount} menunggu verifikasi • ACC otomatis masuk Buku Kas`
-                : `<i class="fa-solid fa-bolt text-trophy-400"></i> Semua HTM terverifikasi & sinkron ke Buku Kas`;
+        async function saveInternalCodeSetting() {
+            const newCode = (document.getElementById('admin-internal-code').value || '').trim().toUpperCase();
+            if (!newCode) {
+                showToast('Kode internal tidak boleh kosong.', 'error');
+                return;
+            }
+            internalSecretCode = newCode;
+            if (window.cloudForm && window.cloudForm.isReady()) {
+                await window.cloudForm.saveSettings({
+                    deadlineTimestamp,
+                    internalSecretCode,
+                    adminSecretPin
+                });
+            }
+            toggleAdminSettingsModal();
+            showToast(`Kode internal diperbarui menjadi: ${internalSecretCode}`, 'success');
+        }
 
-            renderAdminDSPTable();
+        function enableAdminManualMode() {
+            state.isAdminManualMode = true;
+            document.getElementById('admin-manual-banner').classList.remove('hidden');
+            document.getElementById('internal-code-box').classList.add('hidden');
+            document.getElementById('closed-screen').classList.add('hidden');
+            document.getElementById('wizard-card').classList.remove('hidden');
+            toggleAdminSettingsModal();
+            closeAdminDashboard();
+            showToast('Mode Input Manual Admin aktif.', 'info');
+        }
+
+        function disableAdminManualMode() {
+            state.isAdminManualMode = false;
+            document.getElementById('admin-manual-banner').classList.add('hidden');
+            updateCountdownUI();
         }
 
         function renderAdminDSPTable() {
             const q = (document.getElementById('adm-search').value || '').toLowerCase();
-            const cat = document.getElementById('adm-filter-cat').value;
+            const fCat = document.getElementById('adm-filter-cat').value;
 
-            let filtered = playersList.filter(p => {
+            const timACount = playersList.filter(p => getPlayerTeam(p) === 'A').length;
+            const timBCount = playersList.filter(p => getPlayerTeam(p) === 'B').length;
+            const diff = Math.abs(timACount - timBCount);
+            const htmLunas = playersList.filter(p => p.paymentStatus === 'lunas').reduce((s, p) => s + (Number(p.htmAmount) || 20000), 0);
+
+            document.getElementById('adm-kpi-total').textContent = playersList.length;
+            document.getElementById('adm-kpi-split').textContent = `Tim A: ${timACount} • Tim B: ${timBCount}`;
+            document.getElementById('adm-kpi-balance').textContent = diff <= 1 ? 'Seimbang' : `Selisih ${diff} Pemain`;
+            document.getElementById('adm-kpi-balance').className = diff <= 1
+                ? 'font-display text-lg font-extrabold text-emerald-700'
+                : 'font-display text-lg font-extrabold text-amber-600';
+            document.getElementById('adm-kpi-htm-lunas').textContent = formatRupiah(htmLunas);
+
+            const filtered = playersList.filter(p => {
                 const team = getPlayerTeam(p);
-                if (cat !== 'all' && team !== cat) return false;
-                if (q && !(p.nama.toLowerCase().includes(q) || p.id.toLowerCase().includes(q))) return false;
+                if (fCat === 'relawan' && team !== 'A') return false;
+                if (fCat === 'non_relawan' && team !== 'B') return false;
+                if (q && !((p.nama || '').toLowerCase().includes(q) || (p.id || '').toLowerCase().includes(q))) return false;
                 return true;
             });
 
-            filtered = sortPlayersByPosition(filtered);
             const tbody = document.getElementById('adm-dsp-tbody');
-
             if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400 text-xs">Tidak ada data pemain.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400 text-xs">Belum ada pemain yang sesuai filter.</td></tr>`;
                 return;
             }
 
             tbody.innerHTML = filtered.map(p => {
                 const team = getPlayerTeam(p);
-                const teamBadge = team === 'relawan'
-                    ? `<span class="px-2 py-0.5 rounded-md bg-maroon-50 text-maroon-800 text-[11px] font-bold">Tim A: Relawan</span>`
-                    : `<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[11px] font-bold">Tim B: Non-Relawan</span>`;
+                const teamBadge = team === 'A'
+                    ? `<span class="px-2 py-0.5 rounded-full bg-maroon-100 text-maroon-800 text-[11px] font-extrabold">Tim A</span>`
+                    : `<span class="px-2 py-0.5 rounded-full bg-slate-200 text-slate-800 text-[11px] font-extrabold">Tim B</span>`;
 
-                let statusBtn = `<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold">Gratis</span>`;
+                let htmBtn = `<span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold">Gratis</span>`;
                 if (p.kategori === 'non_relawan') {
-                    if (p.paymentStatus === 'lunas') {
-                        statusBtn = `<button type="button" onclick="togglePlayerPaymentStatus('${p.id}')" class="px-2.5 py-1 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[11px] font-bold cursor-pointer"><i class="fa-solid fa-check-circle mr-1"></i>Lunas</button>`;
-                    } else {
-                        statusBtn = `<button type="button" onclick="togglePlayerPaymentStatus('${p.id}')" class="px-2.5 py-1 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-800 text-[11px] font-bold cursor-pointer"><i class="fa-solid fa-clock mr-1"></i>Verifikasi?</button>`;
-                    }
+                    htmBtn = p.paymentStatus === 'lunas'
+                        ? `<button type="button" onclick="togglePaymentStatus('${p.id}')" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold cursor-pointer"><i class="fa-solid fa-check mr-1"></i>Lunas</button>`
+                        : `<button type="button" onclick="togglePaymentStatus('${p.id}')" class="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-[11px] font-bold cursor-pointer">ACC Lunas</button>`;
                 }
 
                 const delBtn = pendingDeletePlayerId === p.id
-                    ? `<button type="button" onclick="confirmDeletePlayer('${p.id}')" class="px-2 py-1 rounded-lg bg-red-600 text-white text-[11px] font-bold cursor-pointer">Yakin Hapus?</button>`
-                    : `<button type="button" onclick="requestDeletePlayer('${p.id}')" class="p-1.5 text-red-500 hover:bg-red-50 rounded-lg cursor-pointer" title="Hapus"><i class="fa-solid fa-trash"></i></button>`;
+                    ? `<button type="button" onclick="confirmDeletePlayer('${p.id}')" class="px-2 py-1 rounded-lg bg-red-600 text-white text-[11px] font-bold cursor-pointer">Hapus?</button>`
+                    : `<button type="button" onclick="requestDeletePlayer('${p.id}')" class="p-1.5 text-red-500 hover:bg-red-50 rounded-lg cursor-pointer" title="Hapus Pemain"><i class="fa-solid fa-trash"></i></button>`;
 
                 return `
                     <tr class="hover:bg-slate-50/70">
-                        <td class="py-3 px-4 font-mono text-xs text-slate-500">#${p.id}</td>
+                        <td class="py-3 px-4 font-mono text-xs font-bold text-slate-500">#${p.id}</td>
                         <td class="py-3 px-4">
                             <p class="font-bold text-slate-900">${p.nama}</p>
-                            <p class="text-[11px] text-slate-500"><i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i>${p.wa}</p>
+                            <p class="text-[11px] text-slate-500">${p.wa}${p.referensi ? ` • Ref: ${p.referensi}` : ''}</p>
                         </td>
                         <td class="py-3 px-4">
-                            <div class="flex flex-wrap items-center gap-1.5">
+                            <div class="flex items-center gap-1.5">
                                 ${teamBadge}
-                                ${p.teamOverride ? '<span class="text-[10px] font-bold text-blue-600">(Bantu Tim)</span>' : ''}
+                                <button type="button" onclick="swapPlayerTeam('${p.id}')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold cursor-pointer" title="Tukar Tim">⇄ Tukar</button>
                             </div>
-                            ${p.referensi ? `<p class="text-[11px] text-slate-400 mt-0.5">Ref: ${p.referensi}</p>` : ''}
                         </td>
-                        <td class="py-3 px-4 text-xs text-slate-700">${(p.posisi || []).join(', ')}</td>
-                        <td class="py-3 px-4 text-center">${statusBtn}</td>
-                        <td class="py-3 px-4 text-right whitespace-nowrap">
-                            <button type="button" onclick="togglePlayerTeam('${p.id}')" class="px-2 py-1 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 text-[11px] font-bold mr-1 cursor-pointer" title="Tukar Tim Sementara">
-                                ⇄ Tukar
-                            </button>
-                            ${delBtn}
-                        </td>
+                        <td class="py-3 px-4 text-xs font-semibold text-slate-700">${(p.posisi || []).join(', ')}</td>
+                        <td class="py-3 px-4 text-center">${htmBtn}</td>
+                        <td class="py-3 px-4 text-right">${delBtn}</td>
                     </tr>
                 `;
             }).join('');
         }
 
-        async function togglePlayerTeam(playerId) {
-            const player = playersList.find(p => p.id === playerId);
-            if (!player) return;
-            const currentTeam = getPlayerTeam(player);
-            player.teamOverride = currentTeam === 'relawan' ? 'non_relawan' : 'relawan';
+        async function swapPlayerTeam(playerId) {
+            const p = playersList.find(x => x.id === playerId);
+            if (!p) return;
+            p.teamOverride = getPlayerTeam(p) === 'A' ? 'B' : 'A';
             if (window.cloudForm && window.cloudForm.isReady()) {
-                await window.cloudForm.savePlayer(player);
-            } else {
-                renderAdminDashboard();
+                await window.cloudForm.savePlayer(p);
             }
-            showToast(`${player.nama} dipindahkan sementara ke ${player.teamOverride === 'relawan' ? 'Tim A (Relawan)' : 'Tim B (Non-Relawan)'}.`, 'success');
+            renderAdminDSPTable();
+            showToast(`${p.nama} dipindahkan ke Tim ${p.teamOverride}.`, 'info');
         }
 
         async function resetTeamOverrides() {
@@ -1771,29 +1740,26 @@
                     }
                 }
             }
-            renderAdminDashboard();
-            showToast('Pembagian tim dikembalikan sesuai kategori asli.', 'success');
+            renderAdminDSPTable();
+            showToast('Pembagian tim dikembalikan sesuai kategori asli.', 'info');
         }
 
-        async function togglePlayerPaymentStatus(playerId) {
-            const player = playersList.find(p => p.id === playerId);
-            if (!player || player.kategori === 'relawan') return;
-
-            player.paymentStatus = player.paymentStatus === 'lunas' ? 'menunggu' : 'lunas';
+        async function togglePaymentStatus(playerId) {
+            const p = playersList.find(x => x.id === playerId);
+            if (!p || p.kategori !== 'non_relawan') return;
+            const willBeLunas = p.paymentStatus !== 'lunas';
+            p.paymentStatus = willBeLunas ? 'lunas' : 'menunggu';
 
             if (window.cloudForm && window.cloudForm.isReady()) {
-                await window.cloudForm.savePlayer(player);
-                if (player.paymentStatus === 'lunas') {
-                    await window.cloudForm.syncPlayerHtmToKas(player, loggedInAdmin || 'Admin Form');
-                    showToast(`HTM ${player.nama} LUNAS & otomatis tercatat di Buku Kas!`, 'success');
+                await window.cloudForm.savePlayer(p);
+                if (willBeLunas) {
+                    await window.cloudForm.syncPlayerHtmToKas(p, loggedInAdmin || 'Admin');
                 } else {
-                    await window.cloudForm.removePlayerHtmFromKas(player.id);
-                    showToast(`Status HTM ${player.nama} dikembalikan ke Menunggu & dihapus dari Buku Kas.`, 'info');
+                    await window.cloudForm.removePlayerHtmFromKas(p.id);
                 }
-            } else {
-                renderAdminDashboard();
-                showToast(`Status HTM ${player.nama}: ${player.paymentStatus.toUpperCase()}.`, 'success');
             }
+            renderAdminDSPTable();
+            showToast(willBeLunas ? `HTM ${p.nama} ACC Lunas & otomatis masuk Buku Kas!` : `Status HTM ${p.nama} dikembalikan ke Menunggu.`, willBeLunas ? 'success' : 'info');
         }
 
         function requestDeletePlayer(playerId) {
@@ -1805,104 +1771,74 @@
             pendingDeletePlayerId = null;
             if (window.cloudForm && window.cloudForm.isReady()) {
                 await window.cloudForm.deletePlayer(playerId);
-                await window.cloudForm.removePlayerHtmFromKas(playerId);
             } else {
                 playersList = playersList.filter(p => p.id !== playerId);
                 syncRegisteredCountUI();
-                renderAdminDashboard();
+                renderAdminDSPTable();
             }
-            showToast('Data pemain berhasil dihapus dari DSP.', 'success');
+            showToast('Data pemain dihapus dari DSP.', 'success');
         }
 
         async function handleResetMatchDSP() {
-            const btnReset = document.getElementById('btn-reset-dsp');
+            const btn = document.getElementById('btn-reset-dsp');
             if (!pendingResetMatchConfirm) {
                 pendingResetMatchConfirm = true;
-                btnReset.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-1"></i> Klik Lagi untuk Kosongkan DSP`;
-                btnReset.className = 'px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition cursor-pointer';
+                btn.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-1"></i> Klik Lagi untuk Kosongkan DSP`;
                 setTimeout(() => {
-                    if (pendingResetMatchConfirm) {
-                        pendingResetMatchConfirm = false;
-                        btnReset.innerHTML = `<i class="fa-solid fa-broom mr-1"></i> Reset DSP Match Baru`;
-                        btnReset.className = 'px-3 py-1.5 rounded-lg border border-red-200 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition cursor-pointer';
-                    }
-                }, 5000);
+                    pendingResetMatchConfirm = false;
+                    btn.innerHTML = `<i class="fa-solid fa-broom mr-1"></i> Reset DSP Match Baru`;
+                }, 4500);
                 return;
             }
-
             pendingResetMatchConfirm = false;
+            btn.innerHTML = `<i class="fa-solid fa-broom mr-1"></i> Reset DSP Match Baru`;
+
             if (window.cloudForm && window.cloudForm.isReady()) {
                 await window.cloudForm.clearAllPlayers();
             } else {
                 playersList = [];
                 syncRegisteredCountUI();
-                renderAdminDashboard();
+                renderAdminDSPTable();
             }
-            btnReset.innerHTML = `<i class="fa-solid fa-broom mr-1"></i> Reset DSP Match Baru`;
-            btnReset.className = 'px-3 py-1.5 rounded-lg border border-red-200 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition cursor-pointer';
-            showToast('DSP berhasil dikosongkan untuk match baru! Riwayat uang kas tetap aman di Buku Kas.', 'success');
+            showToast('DSP berhasil dikosongkan untuk pertandingan baru.', 'success');
         }
 
-        // --- 9. PENGATURAN KODE INTERNAL & MODE MANUAL ---
-        function toggleAdminSettingsModal() {
-            const modal = document.getElementById('admin-settings-modal');
-            if (modal.classList.contains('hidden')) {
-                document.getElementById('admin-internal-code').value = internalSecretCode;
-                modal.classList.remove('hidden');
-            } else {
-                modal.classList.add('hidden');
-            }
-        }
+        // --- 8. SALIN WA & CETAK PDF DSP 2 TIM ---
+        function copyDSPToWA() {
+            const timA = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'A'));
+            const timB = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'B'));
+            const today = new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-        async function saveInternalCodeSetting() {
-            const newCode = document.getElementById('admin-internal-code').value.trim().toUpperCase();
-            if (!newCode) {
-                showToast('Kode internal tidak boleh kosong.', 'error');
-                return;
-            }
-            internalSecretCode = newCode;
+            let txt = `*DSP 2 TIM FUN FOOTBALL biMBA*\n`;
+            txt += `Volunteer Football Community • YPAI 1996\n`;
+            txt += `Update: ${today}\n\n`;
+            txt += `*TIM A — RELAWAN biMBA (${timA.length} Pemain)*\n`;
+            timA.forEach((p, i) => txt += `${i + 1}. ${p.nama} _(${(p.posisi || []).join('/')})_\n`);
+            txt += `\n*TIM B — NON-RELAWAN (${timB.length} Pemain)*\n`;
+            timB.forEach((p, i) => txt += `${i + 1}. ${p.nama} _(${(p.posisi || []).join('/')})_ ${p.paymentStatus === 'lunas' ? '✅' : '⏳'}\n`);
+            txt += `\nTotal: *${playersList.length} Pemain*. Sampai jumpa di lapangan!`;
 
-            if (window.cloudForm && window.cloudForm.isReady()) {
-                await window.cloudForm.saveSettings({
-                    deadlineTimestamp,
-                    adminSecretPin,
-                    internalSecretCode
-                });
-            }
-            toggleAdminSettingsModal();
-            showToast(`Kode Internal Relawan biMBA diperbarui menjadi "${internalSecretCode}".`, 'success');
-        }
-
-        function enableAdminManualMode() {
-            state.isAdminManualMode = true;
-            document.getElementById('admin-manual-banner').classList.remove('hidden');
-            document.getElementById('closed-screen').classList.add('hidden');
-            document.getElementById('wizard-card').classList.remove('hidden');
-            document.getElementById('internal-code-box').classList.add('hidden');
-            toggleAdminSettingsModal();
-            closeAdminDashboard();
-            showToast('Mode Input Manual Admin diaktifkan.', 'info');
-        }
-
-        function disableAdminManualMode() {
-            state.isAdminManualMode = false;
-            document.getElementById('admin-manual-banner').classList.add('hidden');
-            updateCountdown();
-            showToast('Mode Input Manual Admin dimatikan.', 'info');
-        }
-
-        // --- 10. WHATSAPP & CETAK PDF DSP 2 TIM ---
-        function openWAPreviewModal(text, targetPhone = '') {
-            document.getElementById('wa-preview-textarea').value = text;
-            const linkEl = document.getElementById('wa-direct-link');
-            const cleanPhone = String(targetPhone || '').replace(/[^0-9]/g, '');
-            linkEl.href = cleanPhone
-                ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`
-                : `https://wa.me/?text=${encodeURIComponent(text)}`;
-            linkEl.innerHTML = cleanPhone
-                ? `<i class="fa-brands fa-whatsapp"></i> Kirim ke Admin (${ADMIN_WA_DISPLAY})`
-                : `<i class="fa-brands fa-whatsapp"></i> Kirim ke WhatsApp`;
+            document.getElementById('wa-preview-textarea').value = txt;
+            document.getElementById('wa-direct-link').href = 'https://wa.me/?text=' + encodeURIComponent(txt);
             document.getElementById('wa-preview-modal').classList.remove('hidden');
+            copyText(txt, 'DSP 2 Tim WA');
+        }
+
+        function copySetoranSummary() {
+            const nonRel = playersList.filter(p => p.kategori === 'non_relawan');
+            const lunas = nonRel.filter(p => p.paymentStatus === 'lunas');
+            const total = lunas.reduce((s, p) => s + (Number(p.htmAmount) || 20000), 0);
+
+            let txt = `*REKAP SETORAN HTM FUN FOOTBALL biMBA*\n`;
+            txt += `Total Non-Relawan: ${nonRel.length} pemain\n`;
+            txt += `Sudah ACC Lunas: ${lunas.length} pemain\n`;
+            txt += `Total Setoran Masuk Kas: *${formatRupiah(total)}*\n\n`;
+            lunas.forEach((p, i) => txt += `${i + 1}. ${p.nama} — ${formatRupiah(p.htmAmount || 20000)} (${p.bankTujuan || 'Transfer'})\n`);
+
+            document.getElementById('wa-preview-textarea').value = txt;
+            document.getElementById('wa-direct-link').href = 'https://wa.me/?text=' + encodeURIComponent(txt);
+            document.getElementById('wa-preview-modal').classList.remove('hidden');
+            copyText(txt, 'Rekap Setoran HTM');
         }
 
         function closeWAPreviewModal() {
@@ -1910,128 +1846,51 @@
         }
 
         function copyWAPreviewText() {
-            copyText(document.getElementById('wa-preview-textarea').value, 'Teks WhatsApp');
-        }
-
-        function copyDSPToWA() {
-            const timA = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'relawan'));
-            const timB = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'non_relawan'));
-
-            let text = `*DAFTAR SUSUNAN PEMAIN (DSP) — 2 TIM*\n`;
-            text += `Fun Football Relawan biMBA AIUEO (VFC YPAI 1996)\n`;
-            text += `Total: ${playersList.length} Pemain (Tim A: ${timA.length} vs Tim B: ${timB.length})\n\n`;
-
-            text += `*TIM A: RELAWAN biMBA (${timA.length} Pemain)*\n`;
-            timA.forEach((p, i) => {
-                text += `${i + 1}. ${p.nama} — ${(p.posisi || []).join(', ')}${p.teamOverride ? ' _(Bantu Tim)_' : ''}\n`;
-            });
-
-            text += `\n*TIM B: BUKAN RELAWAN / UMUM (${timB.length} Pemain)*\n`;
-            timB.forEach((p, i) => {
-                const st = p.kategori === 'relawan' ? 'Relawan' : (p.paymentStatus === 'lunas' ? 'LUNAS' : 'Menunggu');
-                text += `${i + 1}. ${p.nama} — ${(p.posisi || []).join(', ')} [${st}]\n`;
-            });
-
-            copyText(text, 'DSP 2 Tim');
-            openWAPreviewModal(text);
-        }
-
-        function copySetoranSummary() {
-            const lunasList = playersList.filter(p => p.kategori === 'non_relawan' && p.paymentStatus === 'lunas');
-            const total = lunasList.reduce((s, p) => s + (p.htmAmount || 20000), 0);
-            const tgl = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-            const text = `*REKAP SETORAN HTM FUN FOOTBALL biMBA*\n` +
-                `Tanggal: ${tgl}\n` +
-                `Peserta Non-Relawan Lunas: ${lunasList.length} Pemain\n` +
-                `Total HTM Terverifikasi: ${formatRupiah(total)}\n` +
-                `_(Semua setoran Lunas sudah otomatis tercatat di Buku Kas online)_`;
-            copyText(text, 'Rekap Setoran HTM');
-            openWAPreviewModal(text);
+            copyText(document.getElementById('wa-preview-textarea').value, 'Pesan WA');
         }
 
         function openPrintDSPModal() {
-            const timA = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'relawan'));
-            const timB = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'non_relawan'));
+            const timA = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'A'));
+            const timB = sortPlayersByPosition(playersList.filter(p => getPlayerTeam(p) === 'B'));
             const today = new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+            const renderRows = (list) => list.length === 0
+                ? `<tr><td colspan="3" style="padding:8px; text-align:center; color:#94a3b8; border:1px solid #cbd5e1;">Belum ada pemain</td></tr>`
+                : list.map((p, i) => `
+                    <tr>
+                        <td style="padding:6px; border:1px solid #cbd5e1; text-align:center; width:32px;">${i + 1}</td>
+                        <td style="padding:6px; border:1px solid #cbd5e1; font-weight:700;">${p.nama}</td>
+                        <td style="padding:6px; border:1px solid #cbd5e1;">${(p.posisi || []).join(', ')}</td>
+                    </tr>
+                `).join('');
 
             const html = `
                 <div style="font-family: Inter, sans-serif; color: #0f172a;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:3px solid #801321; padding-bottom:12px; margin-bottom:18px;">
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <img src="${LOGO_BIMBA_URL}" crossorigin="anonymous" referrerpolicy="no-referrer" style="width:46px; height:46px; object-fit:contain;" alt="Logo biMBA">
-                            <div>
-                                <h1 style="margin:0; font-size:18px; font-weight:800; color:#801321;">DAFTAR SUSUNAN PEMAIN (DSP) — 2 TIM</h1>
-                                <p style="margin:3px 0 0; font-size:11.5px; font-weight:600;">Fun Football Relawan biMBA AIUEO • Volunteer Football Community (YPAI 1996)</p>
-                            </div>
+                    <div style="border-bottom:3px solid #801321; padding-bottom:12px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+                        <img src="${LOGO_BIMBA_URL}" crossorigin="anonymous" referrerpolicy="no-referrer" style="width:50px; height:50px; object-fit:contain;" alt="Logo biMBA">
+                        <div style="text-align:center; flex:1;">
+                            <h1 style="margin:0; font-size:18px; font-weight:800; color:#801321;">DAFTAR SUSUNAN PEMAIN (DSP) 2 TIM</h1>
+                            <p style="margin:3px 0 0; font-size:12px; font-weight:700;">Fun Football Relawan biMBA AIUEO • VFC YPAI 1996</p>
+                            <p style="margin:2px 0 0; font-size:10.5px; color:#64748b;">Dicetak: ${today} • Total: ${playersList.length} Pemain</p>
                         </div>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <div style="text-align:right; font-size:10.5px; color:#475569;">
-                                <div>Dicetak: ${today}</div>
-                                <div style="font-weight:700; color:#0f172a; margin-top:2px;">Total: ${playersList.length} Pemain (Tim A: ${timA.length} vs Tim B: ${timB.length})</div>
-                            </div>
-                            <img src="${LOGO_VFC_URL}" crossorigin="anonymous" referrerpolicy="no-referrer" style="width:46px; height:46px; object-fit:contain;" alt="Logo VFC">
+                        <img src="${LOGO_VFC_URL}" crossorigin="anonymous" referrerpolicy="no-referrer" style="width:50px; height:50px; object-fit:contain;" alt="Logo VFC">
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; font-size:11px;">
+                        <div>
+                            <div style="background:#801321; color:#fff; padding:6px 10px; font-weight:800; border-radius:6px 6px 0 0;">TIM A — RELAWAN biMBA (${timA.length})</div>
+                            <table style="width:100%; border-collapse:collapse;">
+                                <thead><tr style="background:#f8fafc;"><th style="padding:6px; border:1px solid #cbd5e1;">No</th><th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Nama Pemain</th><th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Posisi</th></tr></thead>
+                                <tbody>${renderRows(timA)}</tbody>
+                            </table>
                         </div>
-                    </div>
-
-                    <div style="background:#801321; color:#fff; padding:7px 12px; border-radius:6px 6px 0 0; display:flex; justify-content:space-between; font-size:12px; font-weight:800;">
-                        <span>TIM A: RELAWAN biMBA</span><span>${timA.length} Pemain</span>
-                    </div>
-                    <table style="width:100%; border-collapse:collapse; font-size:11px; margin-bottom:18px;">
-                        <thead>
-                            <tr style="background:#f8fafc; border:1px solid #cbd5e1;">
-                                <th style="padding:6px; border:1px solid #cbd5e1; width:32px;">No</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Nama Pemain</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">No. HP / WA</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Posisi Bermain</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; width:55px;">Hadir</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${timA.map((p, i) => `
-                                <tr>
-                                    <td style="padding:6px; border:1px solid #cbd5e1; text-align:center;">${i + 1}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1; font-weight:700;">${p.nama}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1;">${p.wa}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1;">${(p.posisi || []).join(', ')}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1; text-align:center;">[ &nbsp; ]</td>
-                                </tr>
-                            `).join('') || `<tr><td colspan="5" style="padding:10px; text-align:center; border:1px solid #cbd5e1; color:#94a3b8;">Belum ada pemain</td></tr>`}
-                        </tbody>
-                    </table>
-
-                    <div style="background:#d97706; color:#fff; padding:7px 12px; border-radius:6px 6px 0 0; display:flex; justify-content:space-between; font-size:12px; font-weight:800;">
-                        <span>TIM B: BUKAN RELAWAN (UMUM / TAMU)</span><span>${timB.length} Pemain</span>
-                    </div>
-                    <table style="width:100%; border-collapse:collapse; font-size:11px; margin-bottom:24px;">
-                        <thead>
-                            <tr style="background:#f8fafc; border:1px solid #cbd5e1;">
-                                <th style="padding:6px; border:1px solid #cbd5e1; width:32px;">No</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Nama Pemain</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">No. HP / WA</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Posisi</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Referensi</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; width:65px;">HTM</th>
-                                <th style="padding:6px; border:1px solid #cbd5e1; width:55px;">Hadir</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${timB.map((p, i) => `
-                                <tr>
-                                    <td style="padding:6px; border:1px solid #cbd5e1; text-align:center;">${i + 1}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1; font-weight:700;">${p.nama}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1;">${p.wa}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1;">${(p.posisi || []).join(', ')}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1;">${p.referensi || '-'}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1; text-align:center; font-weight:700;">${p.kategori === 'relawan' ? 'GRATIS' : (p.paymentStatus === 'lunas' ? 'LUNAS' : 'PENDING')}</td>
-                                    <td style="padding:6px; border:1px solid #cbd5e1; text-align:center;">[ &nbsp; ]</td>
-                                </tr>
-                            `).join('') || `<tr><td colspan="7" style="padding:10px; text-align:center; border:1px solid #cbd5e1; color:#94a3b8;">Belum ada pemain</td></tr>`}
-                        </tbody>
-                    </table>
-
-                    <div style="display:flex; justify-content:space-between; font-size:11px; margin-top:28px;">
-                        <div>Koordinator Lapangan,<br><br><br>______________________</div>
-                        <div style="text-align:right;">Dicetak oleh Admin,<br><br><br><strong>${loggedInAdmin || 'Panitia'}</strong></div>
+                        <div>
+                            <div style="background:#1e293b; color:#fff; padding:6px 10px; font-weight:800; border-radius:6px 6px 0 0;">TIM B — NON-RELAWAN (${timB.length})</div>
+                            <table style="width:100%; border-collapse:collapse;">
+                                <thead><tr style="background:#f8fafc;"><th style="padding:6px; border:1px solid #cbd5e1;">No</th><th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Nama Pemain</th><th style="padding:6px; border:1px solid #cbd5e1; text-align:left;">Posisi</th></tr></thead>
+                                <tbody>${renderRows(timB)}</tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             `;
@@ -2057,12 +1916,12 @@
             try {
                 await html2pdf().set({
                     margin: 10,
-                    filename: `DSP-2Tim-FunFootball-biMBA-${new Date().toISOString().slice(0, 10)}.pdf`,
+                    filename: `DSP-2-Tim-Fun-Football-biMBA-${new Date().toISOString().slice(0, 10)}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
                 }).from(sheet).save();
-                showToast('File PDF DSP 2 Tim berhasil diunduh!', 'success');
+                showToast('DSP PDF berhasil diunduh!', 'success');
             } catch (err) {
                 downloadPrintHTML();
             } finally {
@@ -2077,23 +1936,21 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Cetak-DSP-FunFootball-${new Date().toISOString().slice(0, 10)}.html`;
+            a.download = `Cetak-DSP-2-Tim-${new Date().toISOString().slice(0, 10)}.html`;
             a.click();
             URL.revokeObjectURL(url);
             showToast('File cetak (.HTML) berhasil diunduh!', 'success');
         }
 
-        // --- 11. INISIALISASI ---
+        // --- 9. INISIALISASI HALAMAN ---
         window.onload = function() {
-            applyFixedLogosUI();
-            syncRegisteredCountUI();
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            updateCountdownUI();
+            setInterval(updateCountdownUI, 1000);
             updateUI();
         };
     </script>
 
-    <!-- MODUL SINKRONISASI ONLINE REAL-TIME (DSP & AUTO-SYNC KE BUKU KAS) -->
+    <!-- MODUL SINKRONISASI ONLINE REAL-TIME (FORM PENDAFTARAN VFC biMBA) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -2118,11 +1975,8 @@
                 const runner = window.google.script.run
                     .withSuccessHandler(resolve)
                     .withFailureHandler(reject);
-                if (typeof arg !== 'undefined') {
-                    runner[fnName](arg);
-                } else {
-                    runner[fnName]();
-                }
+                if (typeof arg !== 'undefined') runner[fnName](arg);
+                else runner[fnName]();
             });
         }
 
@@ -2167,154 +2021,95 @@
                     if (data.formSettings && typeof window.applyCloudFormSettings === 'function') {
                         window.applyCloudFormSettings(data.formSettings);
                     }
-                    if (typeof window.applyCloudPlayersList === 'function') {
-                        window.applyCloudPlayersList(data.players || []);
+                    if (typeof window.applyCloudPlayers === 'function') {
+                        window.applyCloudPlayers(data.players || []);
                     }
                 }
             } catch (err) {
-                console.error('Gagal memuat data dari Google Sheet:', err);
+                console.error('Gagal memuat DSP dari Google Sheet:', err);
                 setSyncBadge('error', 'Koneksi Google Sheet Terputus');
             }
         }
 
         window.cloudForm = {
             isReady: () => Boolean(((isInsideGAS || GAS_WEBAPP_URL) && gasReady) || (db && currentUser)),
-            saveSettings: async (settingsObj) => {
+            savePlayer: async (player) => {
                 if (isInsideGAS || GAS_WEBAPP_URL) {
-                    try {
-                        await gasPost({ action: 'saveFormSettings', settings: settingsObj });
-                        await fetchGasPlayers();
-                        return true;
-                    } catch (err) {
-                        console.error('GAS saveSettings error:', err);
-                        return false;
-                    }
+                    await gasPost({ action: 'savePlayer', player });
+                    await fetchGasPlayers();
+                    return true;
                 }
                 if (!db || !currentUser) return false;
-                try {
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ff_settings', 'main'), settingsObj, { merge: true });
-                    return true;
-                } catch (err) {
-                    console.error('Firestore saveSettings error:', err);
-                    return false;
-                }
-            },
-            savePlayer: async (playerObj) => {
-                if (isInsideGAS || GAS_WEBAPP_URL) {
-                    try {
-                        await gasPost({ action: 'savePlayer', player: playerObj });
-                        await fetchGasPlayers();
-                        return true;
-                    } catch (err) {
-                        console.error('GAS savePlayer error:', err);
-                        return false;
-                    }
-                }
-                if (!db || !currentUser) return false;
-                try {
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ff_players', playerObj.id), playerObj, { merge: true });
-                    return true;
-                } catch (err) {
-                    console.error('Firestore savePlayer error:', err);
-                    return false;
-                }
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ff_players', player.id), player, { merge: true });
+                return true;
             },
             deletePlayer: async (playerId) => {
                 if (isInsideGAS || GAS_WEBAPP_URL) {
-                    try {
-                        await gasPost({ action: 'deletePlayer', playerId });
-                        await fetchGasPlayers();
-                        return true;
-                    } catch (err) {
-                        console.error('GAS deletePlayer error:', err);
-                        return false;
-                    }
+                    await gasPost({ action: 'deletePlayer', playerId });
+                    await fetchGasPlayers();
+                    return true;
                 }
                 if (!db || !currentUser) return false;
-                try {
-                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ff_players', playerId));
-                    return true;
-                } catch (err) {
-                    console.error('Firestore deletePlayer error:', err);
-                    return false;
-                }
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ff_players', playerId));
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'kas_transactions', 'HTM-' + playerId)).catch(() => {});
+                return true;
             },
             clearAllPlayers: async () => {
                 if (isInsideGAS || GAS_WEBAPP_URL) {
-                    try {
-                        await gasPost({ action: 'clearPlayers' });
-                        await fetchGasPlayers();
-                        return true;
-                    } catch (err) {
-                        console.error('GAS clearAllPlayers error:', err);
-                        return false;
-                    }
+                    await gasPost({ action: 'clearPlayers' });
+                    await fetchGasPlayers();
+                    return true;
                 }
                 if (!db || !currentUser) return false;
-                try {
-                    const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'ff_players'));
-                    for (const d of snap.docs) {
-                        await deleteDoc(d.ref);
-                    }
-                    return true;
-                } catch (err) {
-                    console.error('Firestore clearAllPlayers error:', err);
-                    return false;
+                const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'ff_players'));
+                for (const d of snap.docs) {
+                    await deleteDoc(d.ref);
                 }
+                return true;
+            },
+            saveSettings: async (settings) => {
+                if (isInsideGAS || GAS_WEBAPP_URL) {
+                    await gasPost({ action: 'saveFormSettings', settings });
+                    await fetchGasPlayers();
+                    return true;
+                }
+                if (!db || !currentUser) return false;
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ff_settings', 'main'), settings, { merge: true });
+                return true;
             },
             syncPlayerHtmToKas: async (player, adminName) => {
                 if (isInsideGAS || GAS_WEBAPP_URL) {
-                    try {
-                        await gasPost({ action: 'syncPlayerHtmToKas', player, adminName });
-                        return true;
-                    } catch (err) {
-                        console.error('GAS syncPlayerHtmToKas error:', err);
-                        return false;
-                    }
+                    await gasPost({ action: 'syncPlayerHtmToKas', player, adminName });
+                    return true;
                 }
                 if (!db || !currentUser) return false;
-                try {
-                    const tx = {
-                        id: 'HTM-' + player.id,
-                        date: new Date().toISOString().slice(0, 10),
-                        type: 'masuk',
-                        category: 'Setoran HTM Match',
-                        method: player.bankTujuan || 'Transfer',
-                        desc: `HTM ${player.nama} (#${player.id})${player.referensi ? ' • Ref: ' + player.referensi : ''}`,
-                        amount: Number(player.htmAmount) || 20000,
-                        recordedBy: `${adminName || 'Admin Form'} (Verif Form)`,
-                        sourcePlayerId: player.id
-                    };
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'kas_transactions', tx.id), tx, { merge: true });
-                    return true;
-                } catch (err) {
-                    console.error('Firestore syncPlayerHtmToKas error:', err);
-                    return false;
-                }
+                const txId = 'HTM-' + player.id;
+                const tx = {
+                    id: txId,
+                    date: new Date().toISOString().slice(0, 10),
+                    type: 'masuk',
+                    category: 'Setoran HTM Match',
+                    method: player.bankTujuan || 'Transfer',
+                    desc: `HTM ${player.nama} (#${player.id})` + (player.referensi ? ` • Ref: ${player.referensi}` : ''),
+                    amount: Number(player.htmAmount) || 20000,
+                    recordedBy: `${adminName || 'Admin'} (Verif Form)`,
+                    sourcePlayerId: player.id
+                };
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'kas_transactions', txId), tx, { merge: true });
+                return true;
             },
             removePlayerHtmFromKas: async (playerId) => {
                 if (isInsideGAS || GAS_WEBAPP_URL) {
-                    try {
-                        await gasPost({ action: 'removePlayerHtmFromKas', playerId });
-                        return true;
-                    } catch (err) {
-                        console.error('GAS removePlayerHtmFromKas error:', err);
-                        return false;
-                    }
+                    await gasPost({ action: 'removePlayerHtmFromKas', playerId });
+                    return true;
                 }
                 if (!db || !currentUser) return false;
-                try {
-                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'kas_transactions', 'HTM-' + playerId));
-                    return true;
-                } catch (err) {
-                    console.error('Firestore removePlayerHtmFromKas error:', err);
-                    return false;
-                }
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'kas_transactions', 'HTM-' + playerId)).catch(() => {});
+                return true;
             }
         };
 
         async function initCloudSync() {
-            // Prioritas 1: Berjalan langsung di Google Apps Script atau URL GAS diisi (Vercel)
             if (isInsideGAS || GAS_WEBAPP_URL) {
                 setSyncBadge('loading', 'Menghubungkan ke Google Sheet...');
                 await fetchGasPlayers();
@@ -2323,8 +2118,8 @@
             }
 
             if (!firebaseConfig) {
-                if (typeof window.applyCloudPlayersList === 'function' && typeof window.getDefaultSeedPlayers === 'function') {
-                    window.applyCloudPlayersList(window.getDefaultSeedPlayers());
+                if (typeof window.applyCloudPlayers === 'function') {
+                    window.applyCloudPlayers(JSON.parse(JSON.stringify(defaultSeedPlayers)));
                 }
                 setSyncBadge('error', 'Mode Sesi Lokal');
                 return;
@@ -2350,31 +2145,15 @@
                     if (snap.exists() && typeof window.applyCloudFormSettings === 'function') {
                         window.applyCloudFormSettings(snap.data());
                     }
-                }, (err) => console.error('Error listener ff_settings:', err));
+                });
 
                 const playersColRef = collection(db, 'artifacts', appId, 'public', 'data', 'ff_players');
-                let seededOnce = false;
-                onSnapshot(playersColRef, async (snapshot) => {
+                onSnapshot(playersColRef, (snapshot) => {
                     const list = [];
                     snapshot.forEach(docSnap => list.push({ id: docSnap.id, ...docSnap.data() }));
-
-                    if (list.length === 0 && !seededOnce) {
-                        seededOnce = true;
-                        const checkSnap = await getDocs(playersColRef);
-                        if (checkSnap.empty && typeof window.getDefaultSeedPlayers === 'function') {
-                            for (const seed of window.getDefaultSeedPlayers()) {
-                                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'ff_players', seed.id), seed);
-                                if (seed.kategori === 'non_relawan' && seed.paymentStatus === 'lunas') {
-                                    await window.cloudForm.syncPlayerHtmToKas(seed, 'Sistem');
-                                }
-                            }
-                            return;
-                        }
-                    }
-
                     setSyncBadge('online', 'Sinkronisasi Online Aktif');
-                    if (typeof window.applyCloudPlayersList === 'function') {
-                        window.applyCloudPlayersList(list);
+                    if (typeof window.applyCloudPlayers === 'function') {
+                        window.applyCloudPlayers(list);
                     }
                 }, (err) => {
                     console.error('Error listener ff_players:', err);
