@@ -101,14 +101,26 @@
             <div class="flex flex-col md:flex-row items-center justify-between gap-5 text-center">
                 <!-- Mobile Logo Row (tampil berdampingan di layar kecil) -->
                 <div class="flex md:hidden items-center justify-center gap-6 mb-1">
-                    <!-- Logo biMBA (tanpa kotak latar) -->
-                    <div class="logo-bimba-slot w-20 h-20 flex items-center justify-center logo-shadow"></div>
-                    <!-- Logo VFC (tanpa kotak latar) -->
-                    <div class="logo-vfc-slot w-20 h-20 flex items-center justify-center logo-shadow"></div>
+                    <!-- Logo biMBA (Paten via Google Drive) -->
+                    <div class="w-20 h-20 flex items-center justify-center logo-shadow">
+                        <img src="https://lh3.googleusercontent.com/d/1E9HTjJw0PVEORIqBLof8ifE1RLDk-2mF"
+                             onerror="this.src='https://placehold.co/400x400/png?text=Logo+biMBA'"
+                             alt="Logo biMBA AIUEO" class="logo-bimba-img w-full h-full object-contain">
+                    </div>
+                    <!-- Logo VFC (Paten via Google Drive) -->
+                    <div class="w-20 h-20 flex items-center justify-center logo-shadow">
+                        <img src="https://lh3.googleusercontent.com/d/1zKRREPZJzPbvH88NnrM7_Qi0Z5PViD5g"
+                             onerror="this.onerror=null; if(typeof getDefaultVfcSvgDataUri==='function'){this.src=getDefaultVfcSvgDataUri();}"
+                             alt="Logo VFC biMBA" class="logo-vfc-img w-full h-full object-contain">
+                    </div>
                 </div>
 
-                <!-- Desktop Left Logo: biMBA AIUEO (Tanpa Background Kotak) -->
-                <div class="logo-bimba-slot hidden md:flex w-24 h-24 shrink-0 items-center justify-center logo-shadow"></div>
+                <!-- Desktop Left Logo: biMBA AIUEO -->
+                <div class="hidden md:flex w-24 h-24 shrink-0 items-center justify-center logo-shadow">
+                    <img src="https://lh3.googleusercontent.com/d/1E9HTjJw0PVEORIqBLof8ifE1RLDk-2mF"
+                         onerror="this.src='https://placehold.co/400x400/png?text=Logo+biMBA'"
+                         alt="Logo biMBA AIUEO" class="logo-bimba-img w-full h-full object-contain">
+                </div>
 
                 <!-- Judul & Subjudul di Tengah -->
                 <div class="flex-1">
@@ -122,12 +134,16 @@
                     <!-- Counter Terdaftar -->
                     <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/25 border border-white/15 text-xs sm:text-sm font-semibold">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>Sudah Terdaftar: <strong id="registered-count-display" class="text-trophy-400 text-base">0</strong> Pemain</span>
+                        <span>Sudah Terdaftar: <strong id="registered-count-display" class="text-trophy-400 font-extrabold">0</strong> Pemain</span>
                     </div>
                 </div>
 
-                <!-- Desktop Right Logo: VFC Komunitas (Tanpa Background Kotak) -->
-                <div class="logo-vfc-slot hidden md:flex w-24 h-24 shrink-0 items-center justify-center logo-shadow"></div>
+                <!-- Desktop Right Logo: VFC Komunitas -->
+                <div class="hidden md:flex w-24 h-24 shrink-0 items-center justify-center logo-shadow">
+                    <img src="https://lh3.googleusercontent.com/d/1zKRREPZJzPbvH88NnrM7_Qi0Z5PViD5g"
+                         onerror="this.onerror=null; if(typeof getDefaultVfcSvgDataUri==='function'){this.src=getDefaultVfcSvgDataUri();}"
+                         alt="Logo VFC biMBA" class="logo-vfc-img w-full h-full object-contain">
+                </div>
             </div>
         </div>
     </header>
@@ -477,8 +493,12 @@
                     <div class="mt-5 rounded-2xl border border-slate-200 shadow-md overflow-hidden bg-white">
                         <div class="maroon-stripes text-white px-5 py-4 flex items-center justify-between gap-3">
                             <div class="flex items-center gap-3">
-                                <!-- Logo VFC tanpa kotak background -->
-                                <div class="logo-vfc-slot w-11 h-11 shrink-0 logo-shadow flex items-center justify-center"></div>
+                                <!-- Logo VFC Paten -->
+                                <div class="w-11 h-11 shrink-0 logo-shadow flex items-center justify-center">
+                                    <img src="https://lh3.googleusercontent.com/d/1zKRREPZJzPbvH88NnrM7_Qi0Z5PViD5g"
+                                         onerror="this.onerror=null; if(typeof getDefaultVfcSvgDataUri==='function'){this.src=getDefaultVfcSvgDataUri();}"
+                                         alt="Logo VFC biMBA" class="logo-vfc-img w-full h-full object-contain">
+                                </div>
                                 <div>
                                     <h3 class="font-display text-sm sm:text-base font-extrabold tracking-wide">FUN FOOTBALL biMBA</h3>
                                     <p class="text-[10px] sm:text-xs text-red-100/90 uppercase tracking-wider">Volunteer Football Community • YPAI</p>
@@ -628,11 +648,8 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
-                    <button type="button" onclick="openLogoSettingsShortcut()" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-trophy-300 text-xs font-bold cursor-pointer">
-                        <i class="fa-solid fa-image mr-1"></i> Setting Logo
-                    </button>
                     <button type="button" onclick="toggleAdminSettingsModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold cursor-pointer">
-                        <i class="fa-solid fa-sliders mr-1"></i> Pengaturan Form
+                        <i class="fa-solid fa-key mr-1 text-trophy-400"></i> Kode Internal
                     </button>
                     <button type="button" onclick="logoutAdmin()" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-xs font-bold cursor-pointer">
                         <i class="fa-solid fa-right-from-bracket mr-1"></i> Keluar
@@ -723,66 +740,26 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- MODAL 4: PENGATURAN FORM PANITIA                                          -->
+    <!-- MODAL 4: PENGATURAN KODE INTERNAL RELAWAN                                 -->
     <!-- ========================================================================= -->
     <div id="admin-settings-modal" class="hidden fixed inset-0 z-[60] bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-y-auto p-6">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="font-display text-lg font-extrabold text-slate-900">Pengaturan Form & Logo</h3>
+                <h3 class="font-display text-lg font-extrabold text-slate-900">Pengaturan Kode Internal</h3>
                 <button type="button" onclick="toggleAdminSettingsModal()" class="text-slate-400 hover:text-slate-600 cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <div class="space-y-4">
-                <!-- Pengaturan Logo Header & E-Kwitansi -->
-                <div id="logo-settings-section" class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-maroon-700">
-                            <i class="fa-solid fa-image mr-1"></i> Setting Logo (Header & Kwitansi)
-                        </h4>
-                        <button type="button" onclick="resetCustomLogos()" class="text-[11px] font-bold text-slate-500 hover:text-red-600 underline cursor-pointer">
-                            Reset Default
-                        </button>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <!-- Logo biMBA (Kiri) -->
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 text-center flex flex-col items-center gap-2">
-                            <span class="text-[11px] font-bold text-slate-600">Logo biMBA (Kiri)</span>
-                            <div id="preview-logo-bimba" class="w-14 h-14 flex items-center justify-center"></div>
-                            <label class="w-full py-1.5 px-2 rounded-lg bg-maroon-50 hover:bg-maroon-100 text-maroon-800 text-[11px] font-bold cursor-pointer transition">
-                                <i class="fa-solid fa-upload mr-1"></i> Ganti Logo
-                                <input type="file" accept="image/*" class="hidden" onchange="handleLogoUpload('bimba', event)">
-                            </label>
-                        </div>
-                        <!-- Logo Komunitas VFC (Kanan) -->
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 text-center flex flex-col items-center gap-2">
-                            <span class="text-[11px] font-bold text-slate-600">Logo VFC (Kanan)</span>
-                            <div id="preview-logo-vfc" class="w-14 h-14 flex items-center justify-center"></div>
-                            <label class="w-full py-1.5 px-2 rounded-lg bg-maroon-50 hover:bg-maroon-100 text-maroon-800 text-[11px] font-bold cursor-pointer transition">
-                                <i class="fa-solid fa-upload mr-1"></i> Ganti Logo
-                                <input type="file" accept="image/*" class="hidden" onchange="handleLogoUpload('vfc', event)">
-                            </label>
-                        </div>
-                    </div>
-                    <p class="text-[11px] text-slate-500 leading-snug">Gunakan file <strong>PNG transparan</strong> agar logo menyatu bersih tanpa latar kotak di header dan kwitansi.</p>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Batas Waktu Pendaftaran</label>
-                    <input type="datetime-local" id="admin-deadline-input" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm">
-                </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Kode Internal Relawan biMBA</label>
-                    <input type="text" id="admin-internal-code" placeholder="Default: BIMBA96" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold uppercase">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Ganti PIN Admin (Kosongkan jika tetap)</label>
-                    <input type="password" id="admin-new-pin" placeholder="PIN baru..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm">
+                    <input type="text" id="admin-internal-code" placeholder="Default: BIMBA96" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-maroon-600">
+                    <p class="text-[11px] text-slate-500 mt-1.5">Kode ini wajib dimasukkan oleh peserta yang memilih kategori <strong>Relawan biMBA</strong>.</p>
                 </div>
                 <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
                     <button type="button" onclick="enableAdminManualMode()" class="w-full py-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-extrabold cursor-pointer">
                         <i class="fa-solid fa-user-plus mr-1"></i> Aktifkan Mode Input Manual Admin (Bypass Kode & Waktu)
                     </button>
-                    <button type="button" onclick="saveNewDeadline()" class="w-full py-2.5 rounded-xl bg-maroon-700 hover:bg-maroon-800 text-white text-sm font-bold cursor-pointer">
-                        Simpan Pengaturan Online
+                    <button type="button" onclick="saveInternalCodeSetting()" class="w-full py-2.5 rounded-xl bg-maroon-700 hover:bg-maroon-800 text-white text-sm font-bold cursor-pointer">
+                        Simpan Kode Internal
                     </button>
                 </div>
             </div>
@@ -851,29 +828,20 @@
         var internalSecretCode = 'BIMBA96';
         const ADMIN_WA_NUMBER = '6281586666372';
         const ADMIN_WA_DISPLAY = '0815-8666-6372';
-        var customBimbaLogo = '';
-        var customVfcLogo = '';
+
+        // =========================================================================
+        // LOGO PATEN VIA GOOGLE DRIVE:
+        // Cukup ganti ID file Google Drive di dua baris di bawah ini
+        // (pastikan akses file di Google Drive disetel ke "Siapa saja yang memiliki link").
+        // =========================================================================
+        const LOGO_BIMBA_URL = 'https://lh3.googleusercontent.com/d/1E9HTjJw0PVEORIqBLof8ifE1RLDk-2mF';
+        const LOGO_VFC_URL   = 'https://lh3.googleusercontent.com/d/1zKRREPZJzPbvH88NnrM7_Qi0Z5PViD5g';
+
         var playersList = [];
         let loggedInAdmin = '';
         let pendingDeletePlayerId = null;
         let pendingResetMatchConfirm = false;
         let lastPrintBodyHTML = '';
-
-        const DEFAULT_BIMBA_SVG = `
-            <svg viewBox="0 0 120 120" class="w-full h-full">
-                <circle cx="60" cy="60" r="56" fill="#d97736" stroke="#fde68a" stroke-width="4"/>
-                <circle cx="60" cy="60" r="46" fill="#fffbeb"/>
-                <rect x="44" y="28" width="20" height="20" rx="3" fill="#2563eb" stroke="#1e3a8a" stroke-width="1.5"/>
-                <text x="54" y="42" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">BA</text>
-                <rect x="30" y="48" width="20" height="20" rx="3" fill="#dc2626" stroke="#7f1d1d" stroke-width="1.5"/>
-                <text x="40" y="62" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">A</text>
-                <rect x="50" y="48" width="20" height="20" rx="3" fill="#facc15" stroke="#854d0e" stroke-width="1.5"/>
-                <text x="60" y="62" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="800">I</text>
-                <rect x="70" y="48" width="20" height="20" rx="3" fill="#16a34a" stroke="#14532d" stroke-width="1.5"/>
-                <text x="80" y="62" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">U</text>
-                <text x="60" y="83" text-anchor="middle" fill="#991b1b" font-size="11" font-weight="800">biMBA</text>
-                <text x="60" y="96" text-anchor="middle" fill="#1d4ed8" font-size="10" font-weight="800">A I U E O</text>
-            </svg>`;
 
         const DEFAULT_VFC_SVG = `
             <svg viewBox="0 0 120 120" class="w-full h-full">
@@ -889,21 +857,17 @@
                 <text x="60" y="102" text-anchor="middle" fill="#fde047" font-size="8.5" font-weight="800">YPAI 1996</text>
             </svg>`;
 
-        function applyCustomLogosUI() {
-            const bimbaHtml = customBimbaLogo
-                ? `<img src="${customBimbaLogo}" alt="Logo biMBA" class="w-full h-full object-contain">`
-                : DEFAULT_BIMBA_SVG;
-            const vfcHtml = customVfcLogo
-                ? `<img src="${customVfcLogo}" alt="Logo VFC" class="w-full h-full object-contain">`
-                : DEFAULT_VFC_SVG;
-
-            document.querySelectorAll('.logo-bimba-slot').forEach(el => { el.innerHTML = bimbaHtml; });
-            document.querySelectorAll('.logo-vfc-slot').forEach(el => { el.innerHTML = vfcHtml; });
-
-            const prevBimba = document.getElementById('preview-logo-bimba');
-            const prevVfc = document.getElementById('preview-logo-vfc');
-            if (prevBimba) prevBimba.innerHTML = bimbaHtml;
-            if (prevVfc) prevVfc.innerHTML = vfcHtml;
+        function applyFixedLogosUI() {
+            document.querySelectorAll('.logo-bimba-img').forEach(img => {
+                img.src = LOGO_BIMBA_URL;
+            });
+            document.querySelectorAll('.logo-vfc-img').forEach(img => {
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = getDefaultVfcSvgDataUri();
+                };
+                img.src = LOGO_VFC_URL;
+            });
         }
 
         const defaultSeedPlayers = [
@@ -939,9 +903,6 @@
             if (data.deadlineTimestamp) deadlineTimestamp = data.deadlineTimestamp;
             if (data.adminSecretPin) adminSecretPin = data.adminSecretPin;
             if (data.internalSecretCode) internalSecretCode = data.internalSecretCode;
-            if (typeof data.customBimbaLogo === 'string') customBimbaLogo = data.customBimbaLogo;
-            if (typeof data.customVfcLogo === 'string') customVfcLogo = data.customVfcLogo;
-            applyCustomLogosUI();
             updateCountdown();
         };
 
@@ -1383,8 +1344,7 @@
         }
 
         // --- 5. UNDUH E-KWITANSI (PNG) & KONFIRMASI WA ---
-        function getVfcLogoDataUri() {
-            if (customVfcLogo) return customVfcLogo;
+        function getDefaultVfcSvgDataUri() {
             const svgStr = DEFAULT_VFC_SVG.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ');
             return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr.trim());
         }
@@ -1507,27 +1467,36 @@
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, 900, 130);
 
-            const img = new Image();
-            img.onload = () => {
-                ctx.drawImage(img, 36, 22, 86, 86);
-                ctx.fillStyle = '#ffffff';
-                ctx.font = '800 30px Inter, sans-serif';
-                ctx.fillText('E-PASS FUN FOOTBALL biMBA', 142, 62);
-                ctx.fillStyle = '#fde047';
-                ctx.font = '700 16px Inter, sans-serif';
-                ctx.fillText('VOLUNTEER FOOTBALL COMMUNITY • YPAI 1996', 142, 92);
+            const drawHeaderWithImg = (img) => {
+                if (img) {
+                    ctx.drawImage(img, 36, 22, 86, 86);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '800 30px Inter, sans-serif';
+                    ctx.fillText('E-PASS FUN FOOTBALL biMBA', 142, 62);
+                    ctx.fillStyle = '#fde047';
+                    ctx.font = '700 16px Inter, sans-serif';
+                    ctx.fillText('VOLUNTEER FOOTBALL COMMUNITY • YPAI 1996', 142, 92);
+                } else {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '800 30px Inter, sans-serif';
+                    ctx.fillText('E-PASS FUN FOOTBALL biMBA', 45, 62);
+                    ctx.fillStyle = '#fde047';
+                    ctx.font = '700 16px Inter, sans-serif';
+                    ctx.fillText('VOLUNTEER FOOTBALL COMMUNITY • YPAI 1996', 45, 92);
+                }
                 drawBodyAndSave(img);
             };
+
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => drawHeaderWithImg(img);
             img.onerror = () => {
-                ctx.fillStyle = '#ffffff';
-                ctx.font = '800 30px Inter, sans-serif';
-                ctx.fillText('E-PASS FUN FOOTBALL biMBA', 45, 62);
-                ctx.fillStyle = '#fde047';
-                ctx.font = '700 16px Inter, sans-serif';
-                ctx.fillText('VOLUNTEER FOOTBALL COMMUNITY • YPAI 1996', 45, 92);
-                drawBodyAndSave(null);
+                const fallbackImg = new Image();
+                fallbackImg.onload = () => drawHeaderWithImg(fallbackImg);
+                fallbackImg.onerror = () => drawHeaderWithImg(null);
+                fallbackImg.src = getDefaultVfcSvgDataUri();
             };
-            img.src = getVfcLogoDataUri();
+            img.src = LOGO_VFC_URL;
         }
 
         function sendConfirmationWA() {
@@ -1840,112 +1809,34 @@
             showToast('DSP berhasil dikosongkan untuk match baru! Riwayat uang kas tetap aman di Buku Kas.', 'success');
         }
 
-        // --- 9. PENGATURAN PANITIA & MODE MANUAL ---
-        function openLogoSettingsShortcut() {
-            const modal = document.getElementById('admin-settings-modal');
-            if (modal.classList.contains('hidden')) {
-                toggleAdminSettingsModal();
-            }
-            const sec = document.getElementById('logo-settings-section');
-            if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        function handleLogoUpload(type, event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = async function() {
-                    // Kompres otomatis ke maks 240x240 PNG transparan agar ringan untuk sinkronisasi online
-                    const maxDim = 240;
-                    const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
-                    const w = Math.max(1, Math.round(img.width * scale));
-                    const h = Math.max(1, Math.round(img.height * scale));
-                    const c = document.createElement('canvas');
-                    c.width = w;
-                    c.height = h;
-                    const ctx = c.getContext('2d');
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.drawImage(img, 0, 0, w, h);
-                    const dataUrl = c.toDataURL('image/png');
-
-                    if (type === 'bimba') {
-                        customBimbaLogo = dataUrl;
-                    } else {
-                        customVfcLogo = dataUrl;
-                    }
-
-                    applyCustomLogosUI();
-                    if (window.cloudForm && window.cloudForm.isReady()) {
-                        await window.cloudForm.saveSettings({
-                            deadlineTimestamp,
-                            adminSecretPin,
-                            internalSecretCode,
-                            customBimbaLogo,
-                            customVfcLogo
-                        });
-                    }
-                    showToast(`Logo ${type === 'bimba' ? 'biMBA' : 'Komunitas VFC'} berhasil diperbarui & tersinkronisasi online!`, 'success');
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-            event.target.value = '';
-        }
-
-        async function resetCustomLogos() {
-            customBimbaLogo = '';
-            customVfcLogo = '';
-            applyCustomLogosUI();
-            if (window.cloudForm && window.cloudForm.isReady()) {
-                await window.cloudForm.saveSettings({
-                    deadlineTimestamp,
-                    adminSecretPin,
-                    internalSecretCode,
-                    customBimbaLogo,
-                    customVfcLogo
-                });
-            }
-            showToast('Kedua logo dikembalikan ke tampilan default.', 'info');
-        }
-
+        // --- 9. PENGATURAN KODE INTERNAL & MODE MANUAL ---
         function toggleAdminSettingsModal() {
             const modal = document.getElementById('admin-settings-modal');
             if (modal.classList.contains('hidden')) {
-                const dt = new Date(deadlineTimestamp - (new Date().getTimezoneOffset() * 60000));
-                document.getElementById('admin-deadline-input').value = dt.toISOString().slice(0, 16);
                 document.getElementById('admin-internal-code').value = internalSecretCode;
-                document.getElementById('admin-new-pin').value = '';
-                applyCustomLogosUI();
                 modal.classList.remove('hidden');
             } else {
                 modal.classList.add('hidden');
             }
         }
 
-        async function saveNewDeadline() {
-            const val = document.getElementById('admin-deadline-input').value;
-            if (val) deadlineTimestamp = new Date(val).getTime();
-
-            const newPin = document.getElementById('admin-new-pin').value.trim();
-            if (newPin) adminSecretPin = newPin;
-
+        async function saveInternalCodeSetting() {
             const newCode = document.getElementById('admin-internal-code').value.trim().toUpperCase();
-            if (newCode) internalSecretCode = newCode;
+            if (!newCode) {
+                showToast('Kode internal tidak boleh kosong.', 'error');
+                return;
+            }
+            internalSecretCode = newCode;
 
             if (window.cloudForm && window.cloudForm.isReady()) {
                 await window.cloudForm.saveSettings({
                     deadlineTimestamp,
                     adminSecretPin,
-                    internalSecretCode,
-                    customBimbaLogo,
-                    customVfcLogo
+                    internalSecretCode
                 });
             }
             toggleAdminSettingsModal();
-            updateCountdown();
-            showToast('Pengaturan panitia berhasil disimpan secara online!', 'success');
+            showToast(`Kode Internal Relawan biMBA diperbarui menjadi "${internalSecretCode}".`, 'success');
         }
 
         function enableAdminManualMode() {
@@ -2154,7 +2045,7 @@
 
         // --- 11. INISIALISASI ---
         window.onload = function() {
-            applyCustomLogosUI();
+            applyFixedLogosUI();
             syncRegisteredCountUI();
             updateCountdown();
             setInterval(updateCountdown, 1000);
