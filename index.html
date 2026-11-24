@@ -1412,24 +1412,26 @@
                 ctx.restore();
             }
 
-            // Stempel LUNAS miring elegan di atas watermark
+            const isRel = state.kategori === 'relawan';
+            const stampText = isRel ? 'VERIFIED' : 'LUNAS';
+
+            // Stempel VERIFIED (Relawan biMBA) / LUNAS (Umum) miring elegan di atas watermark
             ctx.save();
             ctx.translate(425, 725);
             ctx.rotate(-0.22);
             ctx.strokeStyle = 'rgba(22, 163, 74, 0.85)';
             ctx.lineWidth = 4.5;
-            ctx.strokeRect(-92, -32, 184, 64);
+            ctx.strokeRect(-96, -32, 192, 64);
             ctx.lineWidth = 1.8;
-            ctx.strokeRect(-85, -25, 170, 50);
+            ctx.strokeRect(-89, -25, 178, 50);
             ctx.fillStyle = 'rgba(22, 163, 74, 0.9)';
-            ctx.font = '900 32px Inter, sans-serif';
+            ctx.font = isRel ? '900 28px Inter, sans-serif' : '900 32px Inter, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('LUNAS', 0, 11);
+            ctx.fillText(stampText, 0, isRel ? 10 : 11);
             ctx.restore();
 
             // Detail Peserta (disusun vertikal rapi ke bawah)
             ctx.textAlign = 'left';
-            const isRel = state.kategori === 'relawan';
             const rows = [
                 ['KATEGORI PESERTA', isRel ? 'Relawan biMBA (Internal)' : 'Bukan Relawan biMBA (Umum)'],
                 ['NAMA PESERTA', state.nama],
@@ -1960,7 +1962,7 @@
         // TEMPEL URL WEB APP GOOGLE APPS SCRIPT (/exec) DI SINI SEBELUM DEPLOY VERCEL:
         // Contoh: 'https://script.google.com/macros/s/AKfycbxxxx.../exec'
         // =========================================================================
-        const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbx-UZkzilc2r4PlUKNteNZcXl86xvcJI41Uq5Y5slC-Q0FgHyMNb3wl1wo2JSvzdbmptA/exec';
+        const GAS_WEBAPP_URL = '';
 
         const isInsideGAS = Boolean(window.google && window.google.script && window.google.script.run);
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
