@@ -167,6 +167,33 @@
     <!-- MAIN CONTENT CONTAINER -->
     <main class="max-w-3xl mx-auto px-4 -mt-12 pb-16 relative z-20">
 
+        <!-- Kartu Info Pertandingan (Jadwal, Waktu, Lokasi & Google Maps) -->
+        <div class="bg-white rounded-2xl shadow-md border border-slate-200/80 p-4 sm:px-5 mb-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
+            <div class="space-y-1.5">
+                <div class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-maroon-700">
+                    <i class="fa-solid fa-calendar-check"></i> Jadwal & Lokasi Pertandingan
+                </div>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm font-bold text-slate-800">
+                    <span class="inline-flex items-center gap-1.5">
+                        <i class="fa-regular fa-calendar text-maroon-600"></i>
+                        <span id="info-match-date">Minggu, 29 November 2026</span>
+                    </span>
+                    <span class="inline-flex items-center gap-1.5">
+                        <i class="fa-regular fa-clock text-amber-600"></i>
+                        <span id="info-match-time">16:00 - 18.00 WIB</span>
+                    </span>
+                </div>
+                <div class="flex items-start gap-1.5 text-xs sm:text-sm font-semibold text-slate-600">
+                    <i class="fa-solid fa-location-dot text-red-600 mt-0.5 shrink-0"></i>
+                    <span id="info-match-venue">Lapangan Wijaya Kusuma "Romsol"</span>
+                </div>
+            </div>
+            <a id="info-match-maps-link" href="https://maps.app.goo.gl/L8srgKH9RUvatFAd7" target="_blank" rel="noopener"
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold shadow-sm transition shrink-0">
+                <i class="fa-solid fa-map-location-dot text-sm"></i> Buka Google Maps
+            </a>
+        </div>
+
         <!-- Banner Hitung Mundur Batas Pendaftaran -->
         <div id="countdown-bar" class="bg-white rounded-2xl shadow-md border border-slate-200/80 p-3.5 sm:px-5 mb-5 flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center gap-2.5">
@@ -522,6 +549,23 @@
                             </div>
                             <span id="sum-reg-id" class="px-3 py-1 rounded-lg bg-white/15 border border-white/20 text-xs font-extrabold tracking-wider">#FF-0000</span>
                         </div>
+                        <!-- Strip Info Jadwal & Lokasi di E-Pass -->
+                        <div class="bg-amber-50/90 border-b border-amber-200/70 px-5 py-3 flex flex-wrap items-center justify-between gap-2 text-xs">
+                            <div class="space-y-0.5">
+                                <p class="font-extrabold text-slate-800">
+                                    <i class="fa-regular fa-calendar-check text-maroon-700 mr-1"></i>
+                                    <span id="sum-match-schedule">Minggu, 29 November 2026 • 16:00 - 18.00 WIB</span>
+                                </p>
+                                <p class="font-semibold text-slate-600">
+                                    <i class="fa-solid fa-location-dot text-red-600 mr-1"></i>
+                                    <span id="sum-match-venue">Lapangan Wijaya Kusuma "Romsol"</span>
+                                </p>
+                            </div>
+                            <a id="sum-match-maps-link" href="https://maps.app.goo.gl/L8srgKH9RUvatFAd7" target="_blank" rel="noopener"
+                                class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white hover:bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold transition shrink-0">
+                                <i class="fa-solid fa-map-pin"></i> Maps
+                            </a>
+                        </div>
                         <div class="divide-y divide-slate-100 px-5 py-2 text-sm">
                             <div class="py-3 flex justify-between gap-4">
                                 <span class="text-slate-500">Kategori</span>
@@ -598,169 +642,179 @@
     </main>
 
     <!-- ========================================================================= -->
-    <!-- MODAL 1: INFO DSP 2 TIM PUBLIK (TANPA LOGIN)                              -->
+    <!-- MODAL 1: INFO TRANSPARANSI DSP 2 TIM (PUBLIK)                             -->
     <!-- ========================================================================= -->
-    <div id="public-transparency-modal" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-3xl max-h-[88vh] flex flex-col overflow-hidden">
-            <div class="maroon-stripes text-white px-5 py-4 flex items-center justify-between">
+    <div id="public-transparency-modal" class="hidden fixed inset-0 z-50 bg-slate-950/65 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-slate-50 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+            <div class="maroon-stripes text-white px-5 py-4 flex items-center justify-between gap-3">
                 <div>
-                    <h3 class="font-display text-lg font-extrabold flex items-center gap-2">
-                        <i class="fa-solid fa-people-group text-trophy-400"></i> Info DSP 2 Tim (Real-Time)
+                    <h3 class="font-display text-base sm:text-lg font-extrabold flex items-center gap-2">
+                        <i class="fa-solid fa-users-between-lines text-trophy-400"></i> Info DSP 2 Tim (Real-Time)
                     </h3>
-                    <p class="text-xs text-red-100">Tim Relawan biMBA vs Tim Non-Relawan • Nomor WA disamarkan untuk privasi</p>
+                    <p class="text-[11px] text-red-100/90 mt-0.5">Daftar susunan pemain sementara • Nomor WA disamarkan demi privasi</p>
                 </div>
-                <button type="button" onclick="closePublicTransparency()" class="w-8 h-8 rounded-xl bg-white/15 hover:bg-white/25 flex items-center justify-center cursor-pointer">
+                <button type="button" onclick="closePublicTransparency()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <div id="public-dsp-body" class="p-5 overflow-y-auto space-y-5 bg-slate-50 flex-1"></div>
+            <div id="public-dsp-body" class="p-4 sm:p-5 overflow-y-auto flex-1"></div>
         </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- MODAL 2: LOGIN ADMIN                                                      -->
+    <!-- MODAL 2: LOGIN ADMIN PANITIA                                              -->
     <!-- ========================================================================= -->
-    <div id="admin-login-modal" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="admin-login-modal" class="hidden fixed inset-0 z-50 bg-slate-950/65 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm p-6">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="font-display text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield text-maroon-700"></i> Login Panel Admin
-                </h3>
+                <h3 class="font-display text-lg font-extrabold text-slate-900">Login Admin Panitia</h3>
                 <button type="button" onclick="closeAdminLogin()" class="text-slate-400 hover:text-slate-600 cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <div class="space-y-3">
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Nama Pengurus / Panitia</label>
-                    <input type="text" id="login-admin-name" placeholder="Contoh: Satria / Bendahara" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-maroon-600">
+                    <label for="login-admin-name" class="block text-xs font-bold text-slate-600 mb-1">Nama Admin / Panitia</label>
+                    <input type="text" id="login-admin-name" placeholder="Contoh: Satria (Bendahara)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-maroon-600">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">PIN Admin</label>
+                    <label for="login-admin-pin" class="block text-xs font-bold text-slate-600 mb-1">PIN Admin</label>
                     <input type="password" id="login-admin-pin" placeholder="Masukkan PIN..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-maroon-600">
                 </div>
-                <p id="err-admin-login" class="hidden text-xs font-bold text-red-600">PIN salah atau nama pengurus belum diisi.</p>
-                <button type="button" onclick="submitAdminLogin()" class="w-full py-2.5 rounded-xl bg-maroon-700 hover:bg-maroon-800 text-white text-sm font-bold shadow-sm transition cursor-pointer mt-2">
-                    Masuk ke Panel Admin
+                <p id="err-admin-login" class="hidden text-xs font-bold text-red-600">Nama admin wajib diisi & PIN harus sesuai.</p>
+                <button type="button" onclick="submitAdminLogin()" class="w-full py-2.5 rounded-xl bg-maroon-700 hover:bg-maroon-800 text-white text-sm font-bold cursor-pointer mt-2">
+                    Masuk Panel Admin
                 </button>
             </div>
         </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- MODAL 3: DASHBOARD PANEL ADMIN (DSP 2 TIM & VERIFIKASI HTM)               -->
+    <!-- MODAL 3: DASHBOARD PANEL ADMIN & DSP 2 TIM                                -->
     <!-- ========================================================================= -->
     <div id="admin-dashboard-modal" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-5xl max-h-[92vh] flex flex-col overflow-hidden">
-            <!-- Header Admin -->
+        <div class="bg-slate-50 rounded-3xl shadow-2xl w-full max-w-5xl max-h-[92vh] flex flex-col overflow-hidden">
+            <!-- Header Panel Admin -->
             <div class="bg-slate-900 text-white px-5 py-4 flex flex-wrap items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-maroon-700 flex items-center justify-center text-trophy-400 text-lg">
-                        <i class="fa-solid fa-clipboard-list"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-display text-base sm:text-lg font-extrabold">Panel Admin DSP Fun Football biMBA</h3>
-                        <p class="text-xs text-slate-400">Masuk sebagai: <strong id="adm-logged-name" class="text-trophy-400">-</strong></p>
-                    </div>
+                <div>
+                    <h3 class="font-display text-base sm:text-lg font-extrabold flex items-center gap-2">
+                        <i class="fa-solid fa-user-shield text-trophy-400"></i> Panel Admin & Manajemen DSP
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Masuk sebagai: <strong id="adm-logged-name" class="text-white">-</strong></p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
-                    <button type="button" onclick="toggleAdminSettingsModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold cursor-pointer">
-                        <i class="fa-solid fa-gear mr-1 text-trophy-400"></i> Pengaturan Form
+                    <button type="button" onclick="toggleAdminSettingsModal()" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold cursor-pointer">
+                        <i class="fa-solid fa-sliders mr-1 text-trophy-400"></i> Pengaturan Form
                     </button>
-                    <button type="button" onclick="logoutAdmin()" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-xs font-bold cursor-pointer">
+                    <button type="button" onclick="logoutAdmin()" class="px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold cursor-pointer">
                         <i class="fa-solid fa-right-from-bracket mr-1"></i> Keluar
                     </button>
-                    <button type="button" onclick="closeAdminDashboard()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center cursor-pointer">
+                    <button type="button" onclick="closeAdminDashboard()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 flex items-center justify-center cursor-pointer">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Body Admin -->
-            <div class="p-4 sm:p-6 overflow-y-auto flex-1 bg-slate-50 space-y-5">
+            <!-- Isi Dashboard -->
+            <div class="p-4 sm:p-5 overflow-y-auto flex-1 space-y-4">
                 <!-- KPI Cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-                        <span class="text-[11px] font-bold uppercase text-slate-400 block">Total Pemain DSP</span>
-                        <span id="adm-kpi-total" class="font-display text-2xl font-extrabold text-slate-900">0</span>
-                        <span id="adm-kpi-split" class="text-xs text-slate-500 block mt-0.5">Tim A: 0 • Tim B: 0</span>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <p class="text-[11px] font-bold uppercase text-slate-400">Total Pemain Terdaftar</p>
+                        <p id="adm-kpi-total" class="font-display text-2xl font-extrabold text-slate-900 mt-0.5">0</p>
+                        <p id="adm-kpi-split" class="text-xs font-semibold text-slate-500 mt-0.5">Tim A: 0 • Tim B: 0</p>
                     </div>
-                    <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-                        <span class="text-[11px] font-bold uppercase text-slate-400 block">Keseimbangan Tim</span>
-                        <span id="adm-kpi-balance" class="font-display text-lg font-extrabold text-emerald-700">Seimbang</span>
-                        <span class="text-[11px] text-slate-500 block mt-0.5">Gunakan tombol ⇄ Tukar jika perlu</span>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <p class="text-[11px] font-bold uppercase text-slate-400">Keseimbangan Tim</p>
+                        <p id="adm-kpi-balance" class="font-display text-lg font-extrabold text-emerald-700 mt-1">Seimbang</p>
+                        <button type="button" onclick="resetTeamOverrides()" class="text-[11px] font-bold text-maroon-700 hover:underline mt-1 cursor-pointer">Reset Pembagian Tim</button>
                     </div>
-                    <div class="bg-emerald-900 text-white p-3.5 rounded-2xl shadow-sm">
-                        <span class="text-[11px] font-bold uppercase text-emerald-200 block">Setoran HTM Match Ini</span>
-                        <span id="adm-kpi-htm-lunas" class="font-display text-2xl font-extrabold text-trophy-400">Rp 0</span>
-                        <span id="adm-kpi-htm-pending" class="text-[11px] text-emerald-200 block mt-0.5">
-                            <i class="fa-solid fa-bolt text-trophy-400"></i> Otomatis masuk ke Buku Kas saat ACC Lunas
-                        </span>
+                    <div class="bg-emerald-900 text-white p-4 rounded-2xl shadow-sm">
+                        <p class="text-[11px] font-bold uppercase text-emerald-200">Total HTM ACC Lunas</p>
+                        <p id="adm-kpi-htm-lunas" class="font-display text-2xl font-extrabold text-trophy-400 mt-0.5">Rp 0</p>
+                        <p class="text-[11px] text-emerald-200 mt-0.5">Otomatis tersinkronisasi ke Buku Kas</p>
                     </div>
                 </div>
 
                 <!-- Toolbar Filter & Aksi -->
-                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-                    <div class="flex flex-wrap items-center justify-between gap-2">
-                        <div class="flex flex-wrap items-center gap-2 flex-1 min-w-[220px]">
-                            <input type="text" id="adm-search" oninput="renderAdminDSPTable()" placeholder="Cari nama / kode..." class="px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm w-full sm:w-48 focus:outline-none focus:ring-2 focus:ring-maroon-600">
-                            <select id="adm-filter-cat" onchange="renderAdminDSPTable()" class="px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm bg-white font-semibold">
-                                <option value="all">Semua Kategori (2 Tim)</option>
-                                <option value="relawan">Hanya Tim A (Relawan)</option>
-                                <option value="non_relawan">Hanya Tim B (Non-Relawan)</option>
-                            </select>
-                            <button type="button" onclick="resetTeamOverrides()" class="px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold cursor-pointer">
-                                <i class="fa-solid fa-rotate-left mr-1"></i> Reset Tim
-                            </button>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-2">
-                            <button type="button" onclick="copyDSPToWA()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm cursor-pointer">
-                                <i class="fa-brands fa-whatsapp mr-1"></i> Salin DSP ke WA
-                            </button>
-                            <button type="button" onclick="openPrintDSPModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-sm cursor-pointer">
-                                <i class="fa-solid fa-print mr-1 text-trophy-400"></i> Print DSP 2 Tim
-                            </button>
-                        </div>
+                <div class="bg-white p-3.5 rounded-2xl border border-slate-200 flex flex-wrap items-center justify-between gap-2.5">
+                    <div class="flex flex-wrap items-center gap-2 flex-1 min-w-[200px]">
+                        <input type="text" id="adm-search" oninput="renderAdminDSPTable()" placeholder="Cari nama / kode #FF..." class="px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm w-full sm:w-52">
+                        <select id="adm-filter-cat" onchange="renderAdminDSPTable()" class="px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm bg-white font-semibold">
+                            <option value="all">Semua Tim</option>
+                            <option value="relawan">Tim A (Relawan biMBA)</option>
+                            <option value="non_relawan">Tim B (Non-Relawan)</option>
+                        </select>
                     </div>
-
-                    <div class="pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
-                        <button type="button" onclick="copySetoranSummary()" class="px-3 py-1.5 rounded-lg border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold transition cursor-pointer">
-                            <i class="fa-solid fa-receipt mr-1"></i> Salin Rekap Setoran HTM
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" onclick="copyDSPToWA()" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold cursor-pointer">
+                            <i class="fa-brands fa-whatsapp mr-1"></i> Salin DSP WA
                         </button>
-                        <button type="button" id="btn-reset-dsp" onclick="handleResetMatchDSP()" class="px-3 py-1.5 rounded-lg border border-red-200 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition cursor-pointer">
+                        <button type="button" onclick="copySetoranSummary()" class="px-3 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold cursor-pointer">
+                            <i class="fa-solid fa-receipt mr-1"></i> Rekap HTM
+                        </button>
+                        <button type="button" onclick="openPrintDSPModal()" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold cursor-pointer">
+                            <i class="fa-solid fa-print mr-1 text-trophy-400"></i> Cetak DSP 2 Tim
+                        </button>
+                        <button type="button" id="btn-reset-dsp" onclick="handleResetMatchDSP()" class="px-3 py-2 rounded-xl bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 text-xs font-bold cursor-pointer">
                             <i class="fa-solid fa-broom mr-1"></i> Reset DSP Match Baru
                         </button>
                     </div>
                 </div>
 
-                <!-- Tabel DSP Pemain -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
-                    <table class="w-full text-left border-collapse min-w-[680px]">
-                        <thead>
-                            <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
-                                <th class="py-3 px-4">Kode</th>
-                                <th class="py-3 px-4">Pemain & WA</th>
-                                <th class="py-3 px-4">Tim & Kategori</th>
-                                <th class="py-3 px-4">Posisi</th>
-                                <th class="py-3 px-4 text-center">Status HTM</th>
-                                <th class="py-3 px-4 text-right">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adm-dsp-tbody" class="divide-y divide-slate-100 text-xs sm:text-sm"></tbody>
-                    </table>
+                <!-- Tabel DSP -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[650px]">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
+                                    <th class="py-3 px-4">ID</th>
+                                    <th class="py-3 px-4">Nama & Kontak</th>
+                                    <th class="py-3 px-4">Tim</th>
+                                    <th class="py-3 px-4">Posisi</th>
+                                    <th class="py-3 px-4 text-center">Status HTM</th>
+                                    <th class="py-3 px-4 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adm-dsp-tbody" class="divide-y divide-slate-100 text-xs sm:text-sm"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- MODAL 4: PENGATURAN FORM (BATAS WAKTU & KODE INTERNAL)                    -->
+    <!-- MODAL 4: PENGATURAN FORM (BATAS WAKTU, JADWAL MATCH & KODE INTERNAL)      -->
     <!-- ========================================================================= -->
     <div id="admin-settings-modal" class="hidden fixed inset-0 z-[60] bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-y-auto p-6">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="font-display text-lg font-extrabold text-slate-900">Pengaturan Form</h3>
                 <button type="button" onclick="toggleAdminSettingsModal()" class="text-slate-400 hover:text-slate-600 cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <div class="space-y-4">
+                <!-- Pengaturan Jadwal & Lokasi Pertandingan -->
+                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-maroon-700">
+                        <i class="fa-solid fa-futbol mr-1"></i> Info Jadwal & Lokasi Pertandingan
+                    </p>
+                    <div>
+                        <label for="admin-match-date" class="block text-xs font-bold text-slate-600 mb-1">Hari & Tanggal</label>
+                        <input type="text" id="admin-match-date" placeholder="Minggu, 29 November 2026" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-maroon-600">
+                    </div>
+                    <div>
+                        <label for="admin-match-time" class="block text-xs font-bold text-slate-600 mb-1">Waktu Pertandingan</label>
+                        <input type="text" id="admin-match-time" placeholder="16:00 - 18.00 WIB" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-maroon-600">
+                    </div>
+                    <div>
+                        <label for="admin-match-venue" class="block text-xs font-bold text-slate-600 mb-1">Tempat / Lapangan</label>
+                        <input type="text" id="admin-match-venue" placeholder='Lapangan Wijaya Kusuma "Romsol"' class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-maroon-600">
+                    </div>
+                    <div>
+                        <label for="admin-match-maps" class="block text-xs font-bold text-slate-600 mb-1">Link Google Maps</label>
+                        <input type="url" id="admin-match-maps" placeholder="https://maps.app.goo.gl/..." class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-maroon-600">
+                    </div>
+                </div>
+
                 <div>
                     <label for="admin-deadline-input" class="block text-xs font-bold text-slate-600 mb-1">Batas Akhir Pendaftaran</label>
                     <input type="datetime-local" id="admin-deadline-input" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-maroon-600">
@@ -841,6 +895,12 @@
         var deadlineTimestamp = Date.now() + (3 * 24 * 60 * 60 * 1000);
         var adminSecretPin = '1996';
         var internalSecretCode = 'BIMBA96';
+        var matchInfo = {
+            dayDate: 'Minggu, 29 November 2026',
+            time: '16:00 - 18.00 WIB',
+            venue: 'Lapangan Wijaya Kusuma "Romsol"',
+            mapsUrl: 'https://maps.app.goo.gl/L8srgKH9RUvatFAd7'
+        };
         const ADMIN_WA_NUMBER = '6281586666372';
         const ADMIN_WA_DISPLAY = '0815-8666-6372';
 
@@ -897,11 +957,32 @@
             if (settings.deadlineTimestamp) deadlineTimestamp = Number(settings.deadlineTimestamp);
             if (settings.internalSecretCode) internalSecretCode = String(settings.internalSecretCode).trim().toUpperCase();
             if (settings.adminSecretPin) adminSecretPin = String(settings.adminSecretPin).trim();
+            if (settings.matchInfo && typeof settings.matchInfo === 'object') {
+                matchInfo = { ...matchInfo, ...settings.matchInfo };
+            }
+            syncMatchInfoUI();
             updateCountdownUI();
         };
 
-        function generateRegId() {
-            return 'FF-' + Math.floor(1000 + Math.random() * 9000);
+        function syncMatchInfoUI() {
+            const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+            setTxt('info-match-date', matchInfo.dayDate);
+            setTxt('info-match-time', matchInfo.time);
+            setTxt('info-match-venue', matchInfo.venue);
+            setTxt('sum-match-schedule', `${matchInfo.dayDate} • ${matchInfo.time}`);
+            setTxt('sum-match-venue', matchInfo.venue);
+
+            const cleanMaps = (matchInfo.mapsUrl || '').trim();
+            ['info-match-maps-link', 'sum-match-maps-link'].forEach(id => {
+                const a = document.getElementById(id);
+                if (!a) return;
+                if (cleanMaps) {
+                    a.href = cleanMaps;
+                    a.classList.remove('hidden');
+                } else {
+                    a.classList.add('hidden');
+                }
+            });
         }
 
         function formatRupiah(n) {
@@ -916,6 +997,7 @@
 
         function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
+            if (!container) return;
             const toast = document.createElement('div');
             const colors = type === 'error'
                 ? 'bg-red-600 text-white border-red-700'
@@ -953,44 +1035,47 @@
             if (el) el.textContent = playersList.length;
         }
 
-        // --- 3. COUNTDOWN TIMER ---
         function updateCountdownUI() {
             const now = Date.now();
             const diff = deadlineTimestamp - now;
-            const dLabel = document.getElementById('deadline-date-label');
-            if (dLabel) {
-                const dt = new Date(deadlineTimestamp);
-                dLabel.textContent = dt.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) +
-                    ' pukul ' + dt.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
+            const deadlineDate = new Date(deadlineTimestamp);
+            const labelEl = document.getElementById('deadline-date-label');
+            if (labelEl && !isNaN(deadlineDate.getTime())) {
+                const dateStr = deadlineDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+                const timeStr = deadlineDate.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }).replace(':', '.');
+                labelEl.textContent = `${dateStr} pukul ${timeStr} WIB`;
             }
 
             if (diff <= 0) {
-                document.getElementById('cd-days').textContent = '00';
-                document.getElementById('cd-hours').textContent = '00';
-                document.getElementById('cd-mins').textContent = '00';
-                document.getElementById('cd-secs').textContent = '00';
-                if (!state.isAdminManualMode) {
+                ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = '00';
+                });
+                if (!state.isAdminManualMode && !state.isSubmitted) {
                     document.getElementById('wizard-card').classList.add('hidden');
                     document.getElementById('closed-screen').classList.remove('hidden');
                 }
                 return;
             }
 
-            document.getElementById('closed-screen').classList.add('hidden');
-            document.getElementById('wizard-card').classList.remove('hidden');
+            if (!state.isAdminManualMode) {
+                document.getElementById('closed-screen').classList.add('hidden');
+                document.getElementById('wizard-card').classList.remove('hidden');
+            }
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const mins = Math.floor((diff / (1000 * 60)) % 60);
             const secs = Math.floor((diff / 1000) % 60);
+            const pad = n => String(n).padStart(2, '0');
 
-            document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
-            document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
-            document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+            document.getElementById('cd-days').textContent = pad(days);
+            document.getElementById('cd-hours').textContent = pad(hours);
+            document.getElementById('cd-mins').textContent = pad(mins);
+            document.getElementById('cd-secs').textContent = pad(secs);
         }
 
-        // --- 4. LOGIKA WIZARD 4 LANGKAH ---
+        // --- 3. LOGIKA FORM WIZARD ---
         function selectCategory(cat) {
             state.kategori = cat;
             document.getElementById('err-step-1').classList.add('hidden');
@@ -1005,42 +1090,46 @@
             if (cat === 'relawan') {
                 cardRel.classList.add('border-emerald-600', 'bg-emerald-50/40', 'ring-2', 'ring-emerald-200');
                 cardRel.classList.remove('border-slate-200');
+                chkRel.classList.add('text-emerald-600');
+                chkRel.classList.remove('text-emerald-200');
+
                 cardNon.classList.remove('border-amber-500', 'bg-amber-50/40', 'ring-2', 'ring-amber-200');
                 cardNon.classList.add('border-slate-200');
-                chkRel.classList.replace('text-emerald-200', 'text-emerald-600');
-                chkNon.classList.replace('text-amber-600', 'text-amber-200');
+                chkNon.classList.remove('text-amber-600');
+                chkNon.classList.add('text-amber-200');
+
                 if (!state.isAdminManualMode) {
                     codeBox.classList.remove('hidden');
+                    setTimeout(() => document.getElementById('input-internal-code').focus(), 80);
                 } else {
                     codeBox.classList.add('hidden');
                 }
             } else {
                 cardNon.classList.add('border-amber-500', 'bg-amber-50/40', 'ring-2', 'ring-amber-200');
                 cardNon.classList.remove('border-slate-200');
+                chkNon.classList.add('text-amber-600');
+                chkNon.classList.remove('text-amber-200');
+
                 cardRel.classList.remove('border-emerald-600', 'bg-emerald-50/40', 'ring-2', 'ring-emerald-200');
                 cardRel.classList.add('border-slate-200');
-                chkNon.classList.replace('text-amber-200', 'text-amber-600');
-                chkRel.classList.replace('text-emerald-600', 'text-emerald-200');
+                chkRel.classList.remove('text-emerald-600');
+                chkRel.classList.add('text-emerald-200');
+
                 codeBox.classList.add('hidden');
             }
-            updateStepProgressVisibility();
-        }
 
-        function updateStepProgressVisibility() {
-            const isRelawan = state.kategori === 'relawan';
-            document.getElementById('wrap-line-2-3').classList.toggle('hidden', isRelawan);
-            document.getElementById('wrap-dot-3').classList.toggle('hidden', isRelawan);
+            updateUI();
         }
 
         function handleBuktiUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
+            state.buktiFileName = file.name;
             const reader = new FileReader();
             reader.onload = function(e) {
                 state.buktiDataUrl = e.target.result;
-                state.buktiFileName = file.name;
-                document.getElementById('bukti-preview-img').src = e.target.result;
-                document.getElementById('bukti-file-name').textContent = '✓ ' + file.name;
+                document.getElementById('bukti-preview-img').src = state.buktiDataUrl;
+                document.getElementById('bukti-file-name').textContent = file.name;
                 document.getElementById('upload-placeholder').classList.add('hidden');
                 document.getElementById('upload-preview-wrap').classList.remove('hidden');
                 document.getElementById('err-bukti').classList.add('hidden');
@@ -1050,242 +1139,242 @@
 
         function clearCommitmentError() {
             document.getElementById('err-komitmen').classList.add('hidden');
-            document.getElementById('commitment-label').classList.remove('border-red-400', 'bg-red-50/70');
+            document.getElementById('commitment-label').classList.remove('border-red-500', 'bg-red-50');
         }
 
-        function validateCurrentStep() {
-            if (state.currentStep === 1) {
+        function updateUI() {
+            const isRel = state.kategori === 'relawan';
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`step-${i}`).classList.toggle('hidden', state.currentStep !== i);
+            }
+
+            document.getElementById('wrap-dot-3').classList.toggle('hidden', isRel);
+            document.getElementById('wrap-line-2-3').classList.toggle('hidden', isRel);
+
+            const dots = [1, 2, 3, 4];
+            dots.forEach(n => {
+                const dot = document.getElementById(`dot-step-${n}`);
+                if (!dot) return;
+                if (state.currentStep >= n) {
+                    dot.className = 'w-7 h-7 rounded-full bg-maroon-700 text-white text-xs font-bold flex items-center justify-center';
+                } else {
+                    dot.className = 'w-7 h-7 rounded-full bg-slate-200 text-slate-500 text-xs font-bold flex items-center justify-center';
+                }
+            });
+            document.getElementById('line-1-2').style.width = state.currentStep >= 2 ? '100%' : '0%';
+            document.getElementById('line-2-3').style.width = state.currentStep >= 3 ? '100%' : '0%';
+            document.getElementById('line-3-4').style.width = state.currentStep >= 4 ? '100%' : '0%';
+
+            const badge = document.getElementById('step2-category-badge');
+            const refField = document.getElementById('field-referensi');
+            if (isRel) {
+                badge.textContent = 'Relawan biMBA (Internal)';
+                badge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800';
+                refField.classList.add('hidden');
+            } else {
+                badge.textContent = 'Bukan Relawan biMBA (Umum)';
+                badge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800';
+                refField.classList.remove('hidden');
+            }
+
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const btnSubmit = document.getElementById('btn-submit');
+            const navWrap = document.getElementById('wizard-nav');
+
+            if (state.isSubmitted) {
+                navWrap.classList.add('hidden');
+            } else {
+                navWrap.classList.remove('hidden');
+                btnPrev.classList.toggle('invisible', state.currentStep === 1);
+                btnNext.classList.toggle('hidden', state.currentStep === 4);
+                btnSubmit.classList.toggle('hidden', state.currentStep !== 4);
+            }
+
+            if (state.currentStep === 4) {
+                if (!state.regId) {
+                    state.regId = 'FF-' + Math.floor(1000 + Math.random() * 9000);
+                }
+                document.getElementById('sum-reg-id').textContent = '#' + state.regId;
+                document.getElementById('sum-kategori').textContent = isRel ? 'Relawan biMBA (Internal)' : 'Bukan Relawan biMBA (Umum)';
+                document.getElementById('sum-nama').textContent = state.nama || '-';
+                document.getElementById('sum-wa').textContent = state.wa || '-';
+                document.getElementById('sum-posisi').textContent = state.posisi.join(', ') || '-';
+                document.getElementById('sum-ref-row').classList.toggle('hidden', isRel);
+                document.getElementById('sum-ref').textContent = state.referensi || '-';
+                const htmEl = document.getElementById('sum-htm');
+                if (isRel) {
+                    htmEl.textContent = 'Gratis (Internal biMBA)';
+                    htmEl.className = 'font-bold text-emerald-700 text-right';
+                } else {
+                    htmEl.textContent = `Rp 20.000 (${state.bankTujuan} • Menunggu Verifikasi)`;
+                    htmEl.className = 'font-bold text-amber-700 text-right';
+                }
+                syncMatchInfoUI();
+            }
+        }
+
+        function validateStep(step) {
+            if (step === 1) {
                 if (!state.kategori) {
                     document.getElementById('err-step-1').classList.remove('hidden');
                     return false;
                 }
                 if (state.kategori === 'relawan' && !state.isAdminManualMode) {
-                    const codeVal = (document.getElementById('input-internal-code').value || '').trim().toUpperCase();
-                    if (codeVal !== internalSecretCode) {
+                    const inputCode = (document.getElementById('input-internal-code').value || '').trim().toUpperCase();
+                    if (inputCode !== internalSecretCode) {
                         document.getElementById('err-internal-code').classList.remove('hidden');
-                        showToast('Kode internal Relawan biMBA tidak sesuai.', 'error');
                         return false;
                     }
+                    document.getElementById('err-internal-code').classList.add('hidden');
                 }
                 return true;
             }
 
-            if (state.currentStep === 2) {
-                const nama = document.getElementById('input-nama').value.trim();
-                const wa = document.getElementById('input-wa').value.replace(/[^0-9]/g, '');
-                const ref = document.getElementById('input-referensi').value.trim();
-                const checkedPosisi = Array.from(document.querySelectorAll('input[name="posisi"]:checked')).map(el => el.value);
-
+            if (step === 2) {
                 let ok = true;
+                const nama = (document.getElementById('input-nama').value || '').trim();
+                const wa = (document.getElementById('input-wa').value || '').trim();
+                const ref = (document.getElementById('input-referensi').value || '').trim();
+                const posisi = Array.from(document.querySelectorAll('input[name="posisi"]:checked')).map(el => el.value);
+
                 document.getElementById('err-nama').classList.toggle('hidden', Boolean(nama));
                 if (!nama) ok = false;
 
-                document.getElementById('err-wa').classList.toggle('hidden', wa.length >= 10);
-                if (wa.length < 10) ok = false;
+                const cleanDigits = wa.replace(/\D/g, '');
+                const validWa = cleanDigits.length >= 10;
+                document.getElementById('err-wa').classList.toggle('hidden', validWa);
+                if (!validWa) ok = false;
 
                 if (state.kategori === 'non_relawan') {
                     document.getElementById('err-referensi').classList.toggle('hidden', Boolean(ref));
                     if (!ref) ok = false;
+                } else {
+                    document.getElementById('err-referensi').classList.add('hidden');
                 }
 
-                document.getElementById('err-posisi').classList.toggle('hidden', checkedPosisi.length > 0);
-                if (checkedPosisi.length === 0) ok = false;
+                document.getElementById('err-posisi').classList.toggle('hidden', posisi.length > 0);
+                if (posisi.length === 0) ok = false;
 
-                if (!ok) {
-                    showToast('Lengkapi semua kolom wajib terlebih dahulu.', 'error');
-                    return false;
+                if (ok) {
+                    state.nama = nama;
+                    state.wa = wa;
+                    state.referensi = ref;
+                    state.posisi = posisi;
                 }
-
-                state.nama = nama;
-                state.wa = wa;
-                state.referensi = state.kategori === 'non_relawan' ? ref : '';
-                state.posisi = checkedPosisi;
-                return true;
+                return ok;
             }
 
-            if (state.currentStep === 3) {
-                state.bankTujuan = document.getElementById('input-bank').value;
+            if (step === 3) {
                 let ok = true;
-                if (!state.buktiDataUrl) {
+                state.bankTujuan = document.getElementById('input-bank').value;
+                if (!state.buktiDataUrl && !state.isAdminManualMode) {
                     document.getElementById('err-bukti').classList.remove('hidden');
                     ok = false;
+                } else {
+                    document.getElementById('err-bukti').classList.add('hidden');
                 }
-                if (!document.getElementById('check-transfer').checked) {
+                const checkedTransfer = document.getElementById('check-transfer').checked;
+                if (!checkedTransfer && !state.isAdminManualMode) {
                     document.getElementById('err-transfer').classList.remove('hidden');
                     ok = false;
+                } else {
+                    document.getElementById('err-transfer').classList.add('hidden');
                 }
-                if (!ok) {
-                    showToast('Unggah bukti transfer dan centang konfirmasi pembayaran.', 'error');
-                    return false;
-                }
-                return true;
+                return ok;
             }
-
             return true;
         }
 
         function nextStep() {
-            if (!validateCurrentStep()) return;
-
-            if (state.currentStep === 1) {
-                state.currentStep = 2;
-                const isRel = state.kategori === 'relawan';
-                document.getElementById('step2-category-badge').textContent = isRel ? 'Relawan biMBA' : 'Bukan Relawan biMBA (Umum)';
-                document.getElementById('step2-category-badge').className = isRel
-                    ? 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800'
-                    : 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800';
-                document.getElementById('field-referensi').classList.toggle('hidden', isRel);
-            } else if (state.currentStep === 2) {
-                state.currentStep = state.kategori === 'relawan' ? 4 : 3;
-            } else if (state.currentStep === 3) {
+            if (!validateStep(state.currentStep)) return;
+            if (state.currentStep === 2 && state.kategori === 'relawan') {
                 state.currentStep = 4;
-            }
-
-            if (state.currentStep === 4) {
-                if (!state.regId) state.regId = generateRegId();
-                populateSummary();
+            } else if (state.currentStep < 4) {
+                state.currentStep++;
             }
             updateUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function prevStep() {
-            if (state.isSubmitted) return;
-            if (state.currentStep === 4) {
-                state.currentStep = state.kategori === 'relawan' ? 2 : 3;
+            if (state.currentStep === 4 && state.kategori === 'relawan') {
+                state.currentStep = 2;
             } else if (state.currentStep > 1) {
                 state.currentStep--;
             }
             updateUI();
         }
 
-        function populateSummary() {
-            const isRel = state.kategori === 'relawan';
-            document.getElementById('sum-reg-id').textContent = '#' + state.regId;
-            document.getElementById('sum-kategori').textContent = isRel ? 'Relawan biMBA (Internal)' : 'Bukan Relawan biMBA (Umum)';
-            document.getElementById('sum-nama').textContent = state.nama;
-            document.getElementById('sum-wa').textContent = state.wa;
-            document.getElementById('sum-ref-row').classList.toggle('hidden', isRel);
-            document.getElementById('sum-ref').textContent = state.referensi || '-';
-            document.getElementById('sum-posisi').textContent = state.posisi.join(', ');
-            document.getElementById('sum-htm').textContent = isRel
-                ? 'Gratis (Khusus Internal Relawan biMBA)'
-                : `Rp 20.000 (${state.bankTujuan} • Menunggu Verifikasi)`;
-            document.getElementById('sum-htm').className = isRel
-                ? 'font-bold text-emerald-700 text-right'
-                : 'font-bold text-amber-700 text-right';
-        }
-
-        function updateUI() {
-            [1, 2, 3, 4].forEach(n => {
-                document.getElementById(`step-${n}`).classList.toggle('hidden', state.currentStep !== n);
-                const dot = document.getElementById(`dot-step-${n}`);
-                if (n < state.currentStep || (n === 4 && state.isSubmitted)) {
-                    dot.className = 'w-7 h-7 rounded-full bg-emerald-600 text-white text-xs font-bold flex items-center justify-center';
-                    dot.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i>';
-                } else if (n === state.currentStep) {
-                    dot.className = 'w-7 h-7 rounded-full bg-maroon-700 text-white text-xs font-bold flex items-center justify-center';
-                    dot.textContent = n;
-                } else {
-                    dot.className = 'w-7 h-7 rounded-full bg-slate-200 text-slate-500 text-xs font-bold flex items-center justify-center';
-                    dot.textContent = n;
-                }
-            });
-
-            document.getElementById('line-1-2').style.width = state.currentStep >= 2 ? '100%' : '0%';
-            document.getElementById('line-2-3').style.width = state.currentStep >= 3 ? '100%' : '0%';
-            document.getElementById('line-3-4').style.width = state.currentStep >= 4 ? '100%' : '0%';
-
-            const nav = document.getElementById('wizard-nav');
-            const postActions = document.getElementById('post-submit-actions');
-
-            if (state.isSubmitted) {
-                nav.classList.add('hidden');
-                postActions.classList.remove('hidden');
-            } else {
-                nav.classList.remove('hidden');
-                postActions.classList.add('hidden');
-                document.getElementById('btn-prev').classList.toggle('invisible', state.currentStep === 1);
-                document.getElementById('btn-next').classList.toggle('hidden', state.currentStep === 4);
-                document.getElementById('btn-submit').classList.toggle('hidden', state.currentStep !== 4);
-            }
-        }
-
         async function submitRegistration() {
             if (isSubmitting) return;
-
-            const checkKomitmen = document.getElementById('check-komitmen').checked;
-            if (!checkKomitmen) {
+            const komEl = document.getElementById('check-komitmen');
+            if (!komEl.checked) {
                 document.getElementById('err-komitmen').classList.remove('hidden');
-                document.getElementById('commitment-label').classList.add('border-red-400', 'bg-red-50/70');
-                showToast('Centang pernyataan komitmen hadir terlebih dahulu.', 'error');
+                document.getElementById('commitment-label').classList.add('border-red-500', 'bg-red-50');
                 return;
             }
 
             isSubmitting = true;
             const btnSubmit = document.getElementById('btn-submit');
-            const btnPrev = document.getElementById('btn-prev');
-            const loadingOverlay = document.getElementById('submit-loading-overlay');
-            const loadingBar = document.getElementById('submit-loading-bar');
-            const originalBtnHtml = btnSubmit.innerHTML;
-
-            // Tampilkan indikator loading 3,5 detik & kunci tombol agar tidak double-submit
             btnSubmit.disabled = true;
-            btnPrev.disabled = true;
-            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Memproses...`;
-            loadingBar.style.width = '0%';
-            loadingOverlay.classList.remove('hidden');
+
+            const overlay = document.getElementById('submit-loading-overlay');
+            const bar = document.getElementById('submit-loading-bar');
+            overlay.classList.remove('hidden');
+            bar.style.width = '0%';
             requestAnimationFrame(() => {
-                setTimeout(() => { loadingBar.style.width = '100%'; }, 40);
+                requestAnimationFrame(() => {
+                    bar.style.width = '100%';
+                });
             });
 
-            const nowStr = new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' +
-                new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-
-            const newPlayer = {
+            const isRel = state.kategori === 'relawan';
+            const nowStr = new Date().toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            const playerObj = {
                 id: state.regId,
                 nama: state.nama,
                 wa: state.wa,
                 kategori: state.kategori,
-                posisi: [...state.posisi],
-                referensi: state.referensi,
-                bankTujuan: state.kategori === 'non_relawan' ? state.bankTujuan : '',
-                buktiFileName: state.buktiFileName,
-                htmAmount: state.kategori === 'non_relawan' ? 20000 : 0,
-                paymentStatus: state.kategori === 'relawan' ? 'gratis' : 'menunggu',
+                posisi: state.posisi,
+                referensi: isRel ? '' : state.referensi,
+                bankTujuan: isRel ? '' : state.bankTujuan,
+                buktiFileName: isRel ? '' : state.buktiFileName,
+                htmAmount: isRel ? 0 : 20000,
+                paymentStatus: isRel ? 'gratis' : 'menunggu',
                 isAdminManual: state.isAdminManualMode,
                 createdAt: nowStr
             };
 
-            const minDelay = new Promise(resolve => setTimeout(resolve, 3500));
-            const saveTask = (async () => {
+            const savePromise = (async () => {
                 if (window.cloudForm && window.cloudForm.isReady()) {
-                    await window.cloudForm.savePlayer(newPlayer);
+                    await window.cloudForm.savePlayer(playerObj);
                 } else {
-                    playersList.push(newPlayer);
+                    playersList.push(playerObj);
                     syncRegisteredCountUI();
                 }
             })();
 
-            try {
-                await Promise.all([minDelay, saveTask]);
-                state.isSubmitted = true;
-                document.getElementById('commitment-box').classList.add('hidden');
-                document.getElementById('submitted-banner').classList.remove('hidden');
-                updateUI();
+            const minDelay = new Promise(resolve => setTimeout(resolve, 3500));
 
+            try {
+                await Promise.all([savePromise, minDelay]);
+                state.isSubmitted = true;
+                document.getElementById('submitted-banner').classList.remove('hidden');
+                document.getElementById('commitment-box').classList.add('hidden');
+                document.getElementById('post-submit-actions').classList.remove('hidden');
+                updateUI();
+                showToast('Pendaftaran berhasil tercatat di DSP online!', 'success');
                 if (typeof confetti === 'function') {
-                    confetti({ particleCount: 90, spread: 70, origin: { y: 0.65 } });
+                    confetti({ particleCount: 70, spread: 65, origin: { y: 0.65 } });
                 }
-                showToast('Pendaftaran berhasil tercatat secara online!', 'success');
             } catch (err) {
-                console.error('Gagal mengirim pendaftaran:', err);
-                showToast('Terjadi kendala saat menyimpan pendaftaran. Silakan coba lagi.', 'error');
+                console.error(err);
+                showToast('Gagal menyimpan pendaftaran. Coba lagi.', 'error');
             } finally {
-                loadingOverlay.classList.add('hidden');
-                loadingBar.style.width = '0%';
+                overlay.classList.add('hidden');
+                bar.style.width = '0%';
                 btnSubmit.disabled = false;
-                btnPrev.disabled = false;
-                btnSubmit.innerHTML = originalBtnHtml;
                 isSubmitting = false;
             }
         }
@@ -1307,14 +1396,15 @@
             document.getElementById('input-nama').value = '';
             document.getElementById('input-wa').value = '';
             document.getElementById('input-referensi').value = '';
-            document.querySelectorAll('input[name="posisi"]').forEach(c => c.checked = false);
+            document.querySelectorAll('input[name="posisi"]').forEach(el => el.checked = false);
             document.getElementById('input-bukti').value = '';
             document.getElementById('upload-placeholder').classList.remove('hidden');
             document.getElementById('upload-preview-wrap').classList.add('hidden');
             document.getElementById('check-transfer').checked = false;
             document.getElementById('check-komitmen').checked = false;
-            document.getElementById('commitment-box').classList.remove('hidden');
             document.getElementById('submitted-banner').classList.add('hidden');
+            document.getElementById('commitment-box').classList.remove('hidden');
+            document.getElementById('post-submit-actions').classList.add('hidden');
             document.getElementById('internal-code-box').classList.add('hidden');
 
             ['card-relawan', 'card-non-relawan'].forEach(id => {
@@ -1323,16 +1413,15 @@
                 el.classList.add('border-slate-200');
             });
 
-            updateStepProgressVisibility();
             updateUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 5. E-KWITANSI PNG (DENGAN LOGO SAMAR & STEMPEL LUNAS) & KONFIRMASI WA ---
         function loadCanvasLogoChain(urls) {
             return new Promise((resolve) => {
                 let idx = 0;
                 function tryNext() {
-                    if (idx >= urls.length) return resolve(null);
+                    if (idx >= urls.length) { resolve(null); return; }
                     const img = new Image();
                     img.crossOrigin = 'anonymous';
                     img.referrerPolicy = 'no-referrer';
@@ -1348,7 +1437,7 @@
             const canvas = document.createElement('canvas');
             // Format E-Pass vertikal (portrait panjang ke bawah)
             canvas.width = 560;
-            canvas.height = 880;
+            canvas.height = 960;
             const ctx = canvas.getContext('2d');
 
             // Background krem lembut
@@ -1409,11 +1498,26 @@
             ctx.arc(canvas.width, headerH, 14, 0, Math.PI * 2);
             ctx.fill();
 
+            // Kotak Info Jadwal & Lokasi Pertandingan di bagian atas tiket
+            ctx.fillStyle = '#fef3c7';
+            ctx.fillRect(36, 260, canvas.width - 72, 74);
+            ctx.strokeStyle = '#fcd34d';
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect(36, 260, canvas.width - 72, 74);
+
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#7f111f';
+            ctx.font = '800 14px Inter, sans-serif';
+            ctx.fillText(`${matchInfo.dayDate}  •  ${matchInfo.time}`, canvas.width / 2, 290);
+            ctx.fillStyle = '#334155';
+            ctx.font = '700 14px Inter, sans-serif';
+            ctx.fillText(matchInfo.venue, canvas.width / 2, 316);
+
             // Watermark Logo VFC Samar di area kanan bawah
             if (vfcImg) {
                 ctx.save();
                 ctx.globalAlpha = 0.14;
-                ctx.drawImage(vfcImg, 330, 630, 190, 190);
+                ctx.drawImage(vfcImg, 330, 710, 190, 190);
                 ctx.restore();
             }
 
@@ -1422,7 +1526,7 @@
 
             // Stempel VERIFIED (Relawan biMBA) / LUNAS (Umum) miring elegan di atas watermark
             ctx.save();
-            ctx.translate(425, 725);
+            ctx.translate(425, 805);
             ctx.rotate(-0.22);
             ctx.strokeStyle = 'rgba(22, 163, 74, 0.85)';
             ctx.lineWidth = 4.5;
@@ -1446,7 +1550,7 @@
                 ['STATUS HTM / KAS', isRel ? 'Gratis (Internal biMBA)' : `Rp 20.000 (${state.bankTujuan})`]
             ];
 
-            let y = 286;
+            let y = 374;
             const rowGap = isRel ? 76 : 66;
             rows.forEach(([label, val], idx) => {
                 ctx.fillStyle = '#64748b';
@@ -1472,14 +1576,14 @@
             ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(40, 818);
-            ctx.lineTo(canvas.width - 40, 818);
+            ctx.moveTo(40, 898);
+            ctx.lineTo(canvas.width - 40, 898);
             ctx.stroke();
 
             ctx.textAlign = 'center';
             ctx.fillStyle = '#475569';
             ctx.font = 'italic 600 15px Inter, sans-serif';
-            ctx.fillText('"Tetap Semangat dan Terus Belajar"', canvas.width / 2, 850);
+            ctx.fillText('"Tetap Semangat dan Terus Belajar"', canvas.width / 2, 930);
 
             try {
                 const a = document.createElement('a');
@@ -1502,7 +1606,12 @@
             if (!isRel && state.referensi) msg += `Referensi Relawan: ${state.referensi}\n`;
             msg += `Posisi: ${state.posisi.join(', ')}\n`;
             msg += `Status HTM: ${isRel ? 'Gratis (Internal)' : `Rp 20.000 (${state.bankTujuan})`}\n\n`;
-            msg += `Saya siap hadir tepat waktu & menjunjung sportivitas. Terima kasih!`;
+            msg += `*Jadwal Pertandingan:*\n`;
+            msg += `Hari: ${matchInfo.dayDate}\n`;
+            msg += `Waktu: ${matchInfo.time}\n`;
+            msg += `Tempat: ${matchInfo.venue}\n`;
+            if (matchInfo.mapsUrl) msg += `Maps: ${matchInfo.mapsUrl}\n`;
+            msg += `\nSaya siap hadir tepat waktu & menjunjung sportivitas. Terima kasih!`;
 
             const url = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank', 'noopener');
@@ -1623,6 +1732,10 @@
             const modal = document.getElementById('admin-settings-modal');
             const willOpen = modal.classList.contains('hidden');
             if (willOpen) {
+                document.getElementById('admin-match-date').value = matchInfo.dayDate;
+                document.getElementById('admin-match-time').value = matchInfo.time;
+                document.getElementById('admin-match-venue').value = matchInfo.venue;
+                document.getElementById('admin-match-maps').value = matchInfo.mapsUrl;
                 document.getElementById('admin-deadline-input').value = toLocalDatetimeInputValue(deadlineTimestamp);
                 document.getElementById('admin-internal-code').value = internalSecretCode;
             }
@@ -1642,17 +1755,25 @@
                     deadlineTimestamp = parsedDeadline;
                 }
             }
+            matchInfo = {
+                dayDate: (document.getElementById('admin-match-date').value || '').trim() || matchInfo.dayDate,
+                time: (document.getElementById('admin-match-time').value || '').trim() || matchInfo.time,
+                venue: (document.getElementById('admin-match-venue').value || '').trim() || matchInfo.venue,
+                mapsUrl: (document.getElementById('admin-match-maps').value || '').trim()
+            };
             internalSecretCode = newCode;
+            syncMatchInfoUI();
             updateCountdownUI();
             if (window.cloudForm && window.cloudForm.isReady()) {
                 await window.cloudForm.saveSettings({
                     deadlineTimestamp,
                     internalSecretCode,
-                    adminSecretPin
+                    adminSecretPin,
+                    matchInfo
                 });
             }
             toggleAdminSettingsModal();
-            showToast(`Pengaturan tersimpan! Batas waktu & kode (${internalSecretCode}) diperbarui.`, 'success');
+            showToast(`Pengaturan jadwal, batas waktu & kode (${internalSecretCode}) berhasil disimpan!`, 'success');
         }
 
         function enableAdminManualMode() {
@@ -1832,6 +1953,10 @@
 
             let txt = `*DSP 2 TIM FUN FOOTBALL biMBA*\n`;
             txt += `Volunteer Football Community • YPAI 1996\n`;
+            txt += `Hari: ${matchInfo.dayDate}\n`;
+            txt += `Waktu: ${matchInfo.time}\n`;
+            txt += `Tempat: ${matchInfo.venue}\n`;
+            if (matchInfo.mapsUrl) txt += `Maps: ${matchInfo.mapsUrl}\n`;
             txt += `Update: ${today}\n\n`;
             txt += `*TIM A — RELAWAN biMBA (${timA.length} Pemain)*\n`;
             timA.forEach((p, i) => txt += `${i + 1}. ${p.nama} _(${(p.posisi || []).join('/')})_\n`);
@@ -1892,7 +2017,8 @@
                         <div style="text-align:center; flex:1;">
                             <h1 style="margin:0; font-size:18px; font-weight:800; color:#801321;">DAFTAR SUSUNAN PEMAIN (DSP) 2 TIM</h1>
                             <p style="margin:3px 0 0; font-size:12px; font-weight:700;">Fun Football Relawan biMBA AIUEO • VFC YPAI 1996</p>
-                            <p style="margin:2px 0 0; font-size:10.5px; color:#64748b;">Dicetak: ${today} • Total: ${playersList.length} Pemain</p>
+                            <p style="margin:3px 0 0; font-size:11px; font-weight:700; color:#334155;">${matchInfo.dayDate} • ${matchInfo.time} • ${matchInfo.venue}</p>
+                            <p style="margin:2px 0 0; font-size:10px; color:#64748b;">Dicetak: ${today} • Total: ${playersList.length} Pemain</p>
                         </div>
                         <img src="${LOGO_VFC_URL}" crossorigin="anonymous" referrerpolicy="no-referrer" style="width:50px; height:50px; object-fit:contain;" alt="Logo VFC">
                     </div>
@@ -1965,6 +2091,7 @@
 
         // --- 9. INISIALISASI HALAMAN ---
         window.onload = function() {
+            syncMatchInfoUI();
             updateCountdownUI();
             setInterval(updateCountdownUI, 1000);
             updateUI();
