@@ -144,7 +144,7 @@
                     </h1>
                     <p class="mt-1.5 text-base sm:text-lg font-bold text-white">Relawan biMBA AIUEO</p>
                     <p class="text-xs sm:text-sm font-extrabold tracking-widest text-trophy-400 uppercase mt-0.5">Internal Game</p>
-                    <p class="mt-1 text-xs sm:text-sm italic text-red-100/90">"Mempererat Silaturahmi dan Kerjasama dalam Sepak Bola"</p>
+                    <p class="mt-1 text-xs sm:text-sm italic text-red-100/90">"Tetap Semangat dan Terus Belajar"</p>
 
                     <!-- Counter Terdaftar -->
                     <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/25 border border-white/15 text-xs sm:text-sm font-semibold">
@@ -663,7 +663,7 @@
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                     <button type="button" onclick="toggleAdminSettingsModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold cursor-pointer">
-                        <i class="fa-solid fa-key mr-1 text-trophy-400"></i> Kode Internal
+                        <i class="fa-solid fa-gear mr-1 text-trophy-400"></i> Pengaturan Form
                     </button>
                     <button type="button" onclick="logoutAdmin()" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-xs font-bold cursor-pointer">
                         <i class="fa-solid fa-right-from-bracket mr-1"></i> Keluar
@@ -752,17 +752,22 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- MODAL 4: PENGATURAN KODE INTERNAL RELAWAN                                 -->
+    <!-- MODAL 4: PENGATURAN FORM (BATAS WAKTU & KODE INTERNAL)                    -->
     <!-- ========================================================================= -->
     <div id="admin-settings-modal" class="hidden fixed inset-0 z-[60] bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-y-auto p-6">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="font-display text-lg font-extrabold text-slate-900">Pengaturan Kode Internal</h3>
+                <h3 class="font-display text-lg font-extrabold text-slate-900">Pengaturan Form</h3>
                 <button type="button" onclick="toggleAdminSettingsModal()" class="text-slate-400 hover:text-slate-600 cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <div class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Kode Internal Relawan biMBA</label>
+                    <label for="admin-deadline-input" class="block text-xs font-bold text-slate-600 mb-1">Batas Akhir Pendaftaran</label>
+                    <input type="datetime-local" id="admin-deadline-input" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-maroon-600">
+                    <p class="text-[11px] text-slate-500 mt-1">Form pendaftaran akan otomatis ditutup saat waktu ini terlewati.</p>
+                </div>
+                <div>
+                    <label for="admin-internal-code" class="block text-xs font-bold text-slate-600 mb-1">Kode Internal Relawan biMBA</label>
                     <input type="text" id="admin-internal-code" placeholder="Default: BIMBA96" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-maroon-600">
                     <p class="text-[11px] text-slate-500 mt-1.5">Kode ini wajib dimasukkan oleh peserta yang memilih kategori <strong>Relawan biMBA</strong>.</p>
                 </div>
@@ -771,7 +776,7 @@
                         <i class="fa-solid fa-user-plus mr-1"></i> Aktifkan Mode Input Manual Admin (Bypass Kode & Waktu)
                     </button>
                     <button type="button" onclick="saveInternalCodeSetting()" class="w-full py-2.5 rounded-xl bg-maroon-700 hover:bg-maroon-800 text-white text-sm font-bold cursor-pointer">
-                        Simpan Kode Internal
+                        Simpan Pengaturan Online
                     </button>
                 </div>
             </div>
@@ -1604,27 +1609,41 @@
         function logoutAdmin() {
             loggedInAdmin = '';
             document.getElementById('top-admin-btn-text').textContent = 'Login Admin';
-            disableAdminManualMode();
             closeAdminDashboard();
-            showToast('Berhasil keluar dari Panel Admin.', 'info');
+            showToast('Anda telah keluar dari Panel Admin.', 'info');
+        }
+
+        function toLocalDatetimeInputValue(ts) {
+            const d = new Date(ts);
+            const pad = n => String(n).padStart(2, '0');
+            return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
         }
 
         function toggleAdminSettingsModal() {
             const modal = document.getElementById('admin-settings-modal');
             const willOpen = modal.classList.contains('hidden');
             if (willOpen) {
+                document.getElementById('admin-deadline-input').value = toLocalDatetimeInputValue(deadlineTimestamp);
                 document.getElementById('admin-internal-code').value = internalSecretCode;
             }
             modal.classList.toggle('hidden');
         }
 
         async function saveInternalCodeSetting() {
+            const deadlineVal = document.getElementById('admin-deadline-input').value;
             const newCode = (document.getElementById('admin-internal-code').value || '').trim().toUpperCase();
             if (!newCode) {
                 showToast('Kode internal tidak boleh kosong.', 'error');
                 return;
             }
+            if (deadlineVal) {
+                const parsedDeadline = new Date(deadlineVal).getTime();
+                if (!isNaN(parsedDeadline)) {
+                    deadlineTimestamp = parsedDeadline;
+                }
+            }
             internalSecretCode = newCode;
+            updateCountdownUI();
             if (window.cloudForm && window.cloudForm.isReady()) {
                 await window.cloudForm.saveSettings({
                     deadlineTimestamp,
@@ -1633,7 +1652,7 @@
                 });
             }
             toggleAdminSettingsModal();
-            showToast(`Kode internal diperbarui menjadi: ${internalSecretCode}`, 'success');
+            showToast(`Pengaturan tersimpan! Batas waktu & kode (${internalSecretCode}) diperbarui.`, 'success');
         }
 
         function enableAdminManualMode() {
